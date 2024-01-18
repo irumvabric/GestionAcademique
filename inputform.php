@@ -85,7 +85,7 @@ include("admin/connexion.php");
         <tr>
             <td colspan="2"><p>Promotion/Venue/Time Slots </p></td>
             <td>Monday</td>
-            <td>Tueday</td>
+            <td> tueday</td>
             <td>Wednesday</td>
             <td>Thursday</td>
             <td>Friday</td>
@@ -101,11 +101,11 @@ include("admin/connexion.php");
         </tr>
         <tr class="evenOddsCss">
             <td>8:00 - 10:00</td>
-            <td><select name="options" id="options">
-                    <?php include 'get_options.php'; ?>
+            <td><select name="Mon8_10" id="options">
+                    <?php include 'optionsCours.php'; ?>
                 </select>
-                <input type="text" name="Mon8_10"></td>
-            <td><input type="text" name="Tue8_10"></td>
+                <!-- <input type="text" name="Mon8_10"> --></td>
+            <td><input type="text" name=" tue8_10"></td>
             <td><input type="text" name="Wed8_10"></td>
             <td><input type="text" name="Thur8_10"></td>
             <td><input type="text" name="Fri8_10"></td>
@@ -114,7 +114,7 @@ include("admin/connexion.php");
         <tr>
             <td id="horaireblue">10:00 - 10:15</td>
             <td><input type="text" name="Mon10_15"></td>
-            <td><input type="text" name="Tue10_15"></td>
+            <td><input type="text" name=" tue10_15"></td>
             <td><input type="text" name="Wed10_15"></td>
             <td><input type="text" name="Thur10_15"></td>
             <td><input type="text" name="Fri10_15"></td>
@@ -123,7 +123,7 @@ include("admin/connexion.php");
         <tr>
             <td>10:15 - 12:00</td>
             <td><input type="text" name="Mon10_1"></td>
-            <td><input type="text" name="Tue10_1"></td>
+            <td><input type="text" name=" tue10_1"></td>
             <td><input type="text" name="Wed10_1"></td>
             <td><input type="text" name="Thur10_1"></td>
             <td><input type="text" name="Fri10_1"></td>
@@ -137,7 +137,7 @@ include("admin/connexion.php");
         <tr>
             <td>13:00 - 15:00</td>
             <td><input type="text" name="Mon1_3"></td>
-            <td><input type="text" name="Tue1_3"></td>
+            <td><input type="text" name=" tue1_3"></td>
             <td><input type="text" name="Wed1_3"></td>
             <td><input type="text" name="Thur1_3"></td>
             <td><input type="text" name="Fri1_3"></td>
@@ -146,16 +146,16 @@ include("admin/connexion.php");
         <tr>
             <td id="horaireblue">15:00 - 15:15</td>
             <td><input type="text" name="Mon3_315"></td>
-            <td><input type="text" name="Tue3_315"></td>
+            <td><input type="text" name=" tue3_315"></td>
             <td><input type="text" name="Wed3_315"></td>
             <td><input type="text" name="Thur3_315"></td>
             <td><input type="text" name="Fri3_315"></td>
             
         </tr>
         <tr>
-        <td >15h30 - 17:00</td>
+            <td >15h30 - 17:00</td>
             <td><input type="text" name="Mon315_5"></td>
-            <td><input type="text" name="Tue315_5"></td>
+            <td><input type="text" name="tue315_5"></td>
             <td><input type="text" name="Wed315_5"></td>
             <td><input type="text" name="Thur315_5"></td>
             <td><input type="text" name="Fri315_5"></td>
