@@ -98,10 +98,10 @@ include("../connexion.php");
         <td><input type="text" name="diplome" /></td>
       </tr>
 
-      <tr>
+      <!-- <tr>
         <td> Date embauche</td>
         <td><input type="date" name="dateEmbauche" /></td>
-      </tr>
+      </tr> -->
 
       <tr>
         <td> Tel</td>
@@ -128,14 +128,14 @@ if(isset($_POST['submit']))
     $nom =$_POST['nom'];
 	$prenom = $_POST['prenom'];
     $Diplome = $_POST['diplome'];
-    $date_embauche = $_POST['dateEmbauche'];
+    // $date_embauche = $_POST['dateEmbauche'];
     $tel =$_POST['tel'];
 	$email = $_POST['email'];
 
     
-    $insertProf = " insert into professeur(id_enseignant,nom,prenom,Diplome,date_embauche,telephone,email) values(?,?,?,?,?,?,?)" ;
+    $insertProf = " insert into professeur(id_enseignant,nom,prenom,Diplome,telephone,email) values(?,?,?,?,?,?)" ;
     $stmtInsert = $connexion->prepare($insertProf) ;
-    $result = $stmtInsert->execute([$idEnseignant,$nom,$prenom,$Diplome,$date_embauche,$tel,$email]) ;
+    $result = $stmtInsert->execute([$idEnseignant,$nom,$prenom,$Diplome,$tel,$email]) ;
 
     if($result){
         echo "Succefully added";
