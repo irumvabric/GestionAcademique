@@ -7,147 +7,216 @@ include("../connexion.php");
 <html>
 <head>
 <style>
-	.wrapper{
-		width:420px;
-		border-radius: 10px;
-	}
-	.wrapper h1{
-		font-size:  36px;
-		text-align: center;
-	}
-  body {
-	display: flex;
-	justify-content: center;
-	align-items:center;
-	min-height: 90vh;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-  }
-  
-  form {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-  }
-  
-  table {
-    width: 100%;
+	body {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
 
-  }
-  
-  table td {
-    padding: 5px;
-  }
-  
-  input[type='text'],
-  input[type='tel'],
-  input[type='date'],
-  input[type='email'],
-  input[type='password'] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  input[type='submit'],
-  input[type='reset'] {
-    padding: 10px 20px;
-    border: none;
-    background-color: #4CAF50;
-    color: white;
+nav {
+  background-color: #45a049;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
 
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  input[type='submit']:hover,
-  input[type='reset']:hover {
-    background-color: #45a049;
-  }
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+nav a:hover {
+  color: #000;
+  background-color: #45a569;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.form{
+  width: 35%; 
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 0 10px;
+}
+
+.table {
+  width: 65%; 
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 0 10px;
+}
+
+form table,
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 20px;
+}
+
+.table table td,
+.form table th,
+.table table th {
+  border: 1px solid #45a049;
+  padding: 8px;
+  text-align: left;
+}
+
+input[type='text'],
+input[type='number'],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+input[type='submit'],
+input[type='reset'] {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input[type='submit']:hover,
+input[type='reset']:hover {
+  background-color: #45a049;
+}
+
+.header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
+
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+}
 </style>
 </head>
 <body>
-	<div class="wrapper">
-  <form method="POST">
-	<h1>Ajout Salle</h1>
-    <table>
-
-      <tr>
-        <td> Id Salle  </td>
-        <td><input type="text" name="idSalle" /></td>
-      </tr>
-      <tr>
-        <td> Nom </td>
-        <td><input type="text" name="nom" /></td>
-      </tr>
-
-      <tr>
-        <td> Nombres de places	</td>
-        <td><input type="number" name="NbrPlaces" /></td>
-      </tr>
-
-      <tr>
-        <td> EtatSalleOccup</td>
-        <td><input type="text" name="EtatSalleOccup" /></td>
-      </tr>
-
-      <tr>
-        <td colspan="2">
-          <input type="submit" name="submit" value="Save" />
-          <input type="reset" value="Cancel" />
-        </td>
-      </tr>
-    </table>
-  </form>
-<?php 
-if(isset($_POST['submit']))
-{
-    $idSalle = $_POST['idSalle'];
-    $nom =$_POST['nom'];
-	$NbrPlaces = $_POST['NbrPlaces'];
-    $EtatSalle = $_POST['EtatSalleOccup'];
-    
-    $insertSalle = " insert into salle(idSalle,Nom,NbrPlaces,EtatSalleOccup) values(?,?,?,?)" ;
-    $stmtInsert = $connexion->prepare($insertSalle) ;
-    $result = $stmtInsert->execute([$idSalle,$nom,$NbrPlaces,$EtatSalle]) ;
-
-    if($result){
-        echo "Succefully added";
-      }else{
-        echo "Data have not been added";
-      }
-$variable_affichage = $connexion ->query("select * from Salle");
-while($bd_util =  $variable_affichage->fetch())
-{
-	if(( $insertSalle ==$bd_util['idSalle']))
-	{
-        echo "La salle de classe est deja dans la base de données";
-		// header('location:home.php');
+  
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#professeur">Professeur</a>
+    <a href="#cour">Cour</a>
+    <a href="#faculte">Faculté</a>
+    <a href="#departement">Departement</a>
+    <a href="#salle">Salle</a>
+    <a href="#horaire">Horaire</a>
+    <a href="#promotion">Promotion</a>
+  </nav>
 	
-	}
-	else
-	{
-		
-        // $insertUser = " insert into utilisateur(nom,prenom,tel,email,username,password) values(?,?,?,?,?,?)" ;
-        // $stmtInsert = $connexion->prepare($insertUser) ;
-        // $result = $stmtInsert->execute([$nom,$prenom,$tel,$email,$user_name,$psw]) ;
-    
-        // if($result){
-        //     echo "Succefully added";
-        //   }else{
-        //     echo "Data have not been added";
-        //   }
-	}
+  <div class="wrapper">
+    <!-- Form section -->
+    <div class="form">
+        <form method="POST">
+        <h1>Ajout Salle</h1>
+        <table>
 
-}
-}
+            <!-- <tr>
+              <td> Id Salle  </td>
+              <td><input type="text" name="idSalle" /></td>
+            </tr> -->
+            <tr>
+              <td> Nom </td>
+              <td><input type="text" name="nom" /></td>
+            </tr>
+
+            <tr>
+              <td> Nombres de places	</td>
+              <td><input type="number" name="NbrPlaces" /></td>
+            </tr>
+
+            <tr>
+            <tr>
+              <td colspan="2">
+                <input type="submit" name="submit" value="Save" />
+                <input type="reset" value="Cancel" />
+              </td>
+            </tr>
+          </table>
+        </form>
+    </div>
+    <!-- Table section -->
+    <div class="table">
+    <table>
+            <tr>
+              <th>Nom</th>
+              <th>Nombres de places</th>
+              <th>Functions</th>
+            </tr>
+            <?php
+
+                include("../connexion.php");
+                $sql = "SELECT * FROM salle"; 
+                $stmtSelect = $connexion->prepare($sql);
+                $stmtSelect ->execute();
+                $salles = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+                foreach($salles as $salle): 
+                ?>
+            <tr>
+                <td> <?php echo $salle['Nom'];?></td>
+                <td><?php echo $salle['NbrPlaces']; ?></td>
+                <td>Edit || Delete</td>
+            </tr>
+            <?php 
+              endforeach;
+            ?>
+      </table>
+      </div>
+  </div>
+ 
+  
+<?php 
+    if(isset($_POST['submit']))
+    {
+        $id =$_POST['id'];
+      $intitule = $_POST['intitule'];
+        $NbrCredit =$_POST['NbrCredit'];
+      $Description = $_POST['Desc'];
+        
+        $insertCourse = " insert into cour(id,intitule,NbrCredit,Description) values(?,?,?,?)" ;
+        $stmtInsert = $connexion->prepare($insertCourse) ;
+        $result = $stmtInsert->execute([$id,$intitule,$NbrCredit,$Description]) ;
+
+        if($result){
+            echo "Succefully added";
+          }else{
+            echo "Data have not been added";
+          }
+    $variable_affichage = $connexion ->query("select * from cour");
+    while($bd_util =  $variable_affichage->fetch())
+    {
+      if(($id ==$bd_util['id']))
+      {
+            echo('The course already exit in Database');
+        // header('location:home.php');
+      
+      }
+    }
+    }
 ?>
 </body>
 </html>

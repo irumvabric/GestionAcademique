@@ -132,27 +132,21 @@ input[type='reset']:hover {
     <!-- Form section -->
     <div class="form">
         <form method="POST">
-        <h1>Ajout Cours</h1>
+        <h1>Ajout Departement</h1>
           <table>
             <tr>
-              <td> ID Cours </td>
+              <td> ID Departement </td>
               <td><input type="text" name="id" /></td>
             </tr>
 
             <tr>
-              <td> Intitulé</td>
-              <td><input type="text" name="intitule" /></td>
+              <td> Nom</td>
+              <td><input type="text" name="Nom" /></td>
             </tr>
 
             <tr>
-              <td> Nombre de Credit</td>
-              <td><input type="number" name="NbrCredit" /></td>
-            </tr>
-
-            <tr>
-              <td> Description</td>
-              <td>  <textarea name="Desc" rows="4" cols="50"></textarea>
-      </td>
+              <td> Faculté</td>
+              <td><input type="text" name="Nom" /></td>
             </tr>
 
             <tr>
@@ -168,26 +162,24 @@ input[type='reset']:hover {
     <div class="table">
     <table>
             <tr>
-              <th>id</th>
-              <th>intitule</th>
-              <th>NbrCredit</th>
-              <th>Description</th>
+              <th>id Departement</th>
+              <th>Nom Departement</th>
+              <th>Nom Faculté</th>
               <th>Functions</th>
             </tr>
             <?php
 
                 include("../connexion.php");
-                $sql = "SELECT * FROM cour"; 
+                $sql = "SELECT * FROM departement"; 
                 $stmtSelect = $connexion->prepare($sql);
                 $stmtSelect ->execute();
-                $cours = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
-                foreach($cours as $cour): 
+                $departements = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+                foreach($departements as $departement): 
                 ?>
             <tr>
-                <td> <?php echo $cour['id'];?></td>
-                <td><?php echo $cour['intitule']; ?></td>
-                <td> <?php echo $cour['NbrCredit'];?></td> 
-                <td> <?php echo $cour['Description'];?></td> 
+                <td> <?php echo $departement['idDepartement'];?></td>
+                <td><?php echo $departement['nom']; ?></td>
+                <td><?php echo $departement['Faculte']; ?></td>
                 <td>Edit || Delete</td>
             </tr>
             <?php 
@@ -202,23 +194,23 @@ input[type='reset']:hover {
     if(isset($_POST['submit']))
     {
         $id =$_POST['id'];
-      $intitule = $_POST['intitule'];
-        $NbrCredit =$_POST['NbrCredit'];
-      $Description = $_POST['Desc'];
+        $Nom = $_POST['Nom'];
+        $faculte = $_POST['faculte'];
         
-        $insertCourse = " insert into cour(id,intitule,NbrCredit,Description) values(?,?,?,?)" ;
-        $stmtInsert = $connexion->prepare($insertCourse) ;
-        $result = $stmtInsert->execute([$id,$intitule,$NbrCredit,$Description]) ;
+        
+        $insertDep = " insert into departement(idDepartement,nom,faculte) values(?,?,?)" ;
+        $stmtInsert = $connexion->prepare($insertDep) ;
+        $result = $stmtInsert->execute([$id,$Nom,$faculte]) ;
 
         if($result){
             echo "Succefully added";
           }else{
             echo "Data have not been added";
           }
-    $variable_affichage = $connexion ->query("select * from cour");
+    $variable_affichage = $connexion ->query("select * from departement");
     while($bd_util =  $variable_affichage->fetch())
     {
-      if(($id ==$bd_util['id']))
+      if(($id ==$bd_util['idDepartement']))
       {
             echo('The course already exit in Database');
         // header('location:home.php');

@@ -7,79 +7,141 @@ include("../connexion.php");
 <html>
 <head>
 <style>
-	.wrapper{
-		width:420px;
-		border-radius: 10px;
-	}
-	.wrapper h1{
-		font-size:  36px;
-		text-align: center;
-	}
-  body {
-	display: flex;
-	justify-content: center;
-	align-items:center;
-	min-height: 90vh;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-  }
-  
-  form {
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-  }
-  
-  table {
-    width: 100%;
+	body {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
 
-  }
-  
-  table td {
-    padding: 5px;
-  }
-  
-  input[type='text'],
-  input[type='tel'],
-  input[type='date'],
-  input[type='email'],
-  input[type='password'] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  input[type='submit'],
-  input[type='reset'] {
-    padding: 10px 20px;
-    border: none;
-    background-color: #4CAF50;
-    color: white;
+nav {
+  background-color: #45a049;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
 
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 16px;
-  }
-  
-  input[type='submit']:hover,
-  input[type='reset']:hover {
-    background-color: #45a049;
-  }
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+nav a:hover {
+  color: #000;
+  background-color: #45a569;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.form{
+  width: 30%; 
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 0 10px;
+}
+
+.table {
+  width: 70%; 
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 0 10px;
+}
+
+form table,
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 20px;
+}
+
+.table table td,
+.form table th,
+.table table th {
+  border: 1px solid #45a049;
+  max-width: auto;
+  padding: 8px;
+  text-align: left;
+}
+
+.table table td img {
+  width: 20px;
+  height: 10px;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='number'],
+textarea {
+  width: auto;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+input[type='submit'],
+input[type='reset'] {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+input[type='submit']:hover,
+input[type='reset']:hover {
+  background-color: #45a049;
+}
+
+.header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
+
+.wrapper h1 {
+  font-size: 36px;
+  text-align: center;
+}
 </style>
 </head>
 <body>
-	<div class="wrapper">
-  <form method="POST">
-	<h1>Ajout Professeur</h1>
-    <table>
-
-      <tr>
+  
+  <nav>
+    <a href="#accueil">Accueil</a>
+    <a href="#professeur">Professeur</a>
+    <a href="#cour">Cour</a>
+    <a href="#faculte">Faculté</a>
+    <a href="#departement">Departement</a>
+    <a href="#salle">Salle</a>
+    <a href="#horaire">Horaire</a>
+    <a href="#promotion">Promotion</a>
+  </nav>
+	
+  <div class="wrapper">
+    <!-- Form section -->
+    <div class="form">
+        <form method="POST">
+        <h1>Ajout Professeur</h1>
+          <table>
+          <tr>
         <td> Id Enseignant  </td>
         <td><input type="text" name="idEnseignant" /></td>
       </tr>
@@ -105,7 +167,7 @@ include("../connexion.php");
 
       <tr>
         <td> Tel</td>
-        <td><input type="tel" name="tel" /></td>
+        <td><input type="number" name="tel" /></td>
       </tr>
 
       <tr>
@@ -113,15 +175,53 @@ include("../connexion.php");
         <td><input type="email" name="email" /></td>
       </tr>
 
-      <tr>
-        <td colspan="2">
-          <input type="submit" name="submit" value="Save" />
-          <input type="reset" value="Cancel" />
-        </td>
-      </tr>
-    </table>
-  </form>
-<?php 
+            <tr>
+              <td colspan="2">
+                <input type="submit" name="submit" value="Save" />
+                <input type="reset" value="Cancel" />
+              </td>
+            </tr>
+          </table>
+        </form>
+    </div>
+    <!-- Table section -->
+    <div class="table">
+    <table>
+            <tr>
+              <th>Matricule</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Diplôme</th>
+              <th>Télephone</th>
+              <th>Email</th>
+              <th>Functions</th>
+            </tr>
+            <?php
+
+                include("../connexion.php");
+                $sql = "SELECT * FROM professeur"; 
+                $stmtSelect = $connexion->prepare($sql);
+                $stmtSelect ->execute();
+                $professeurs = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+                foreach($professeurs as $professeur): 
+                ?>
+            <tr>
+                <td> <?php echo $professeur['id_enseignant'];?></td>
+                <td><?php echo $professeur['nom']; ?></td>
+                <td> <?php echo $professeur['prenom'];?></td> 
+                <td> <?php echo $professeur['Diplome'];?></td> 
+                <td> <?php echo $professeur['telephone'];?></td> 
+                <td> <?php echo $professeur['email'];?></td> 
+                <td>Edit || Delete</td>
+            </tr>
+            <?php 
+              endforeach;
+            ?>
+      </table>
+      </div>
+  </div>
+ 
+  <?php 
 if(isset($_POST['submit']))
 {
     $idEnseignant = $_POST['idEnseignant'];

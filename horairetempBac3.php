@@ -1,7 +1,3 @@
-<?php
-include("admin/connexion.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +10,7 @@ include("admin/connexion.php");
 
         }
         h3,p{
+            
             margin :0;
         }
         img{
@@ -75,17 +72,26 @@ include("admin/connexion.php");
     <title>Document</title>
 </head>
 <body>
-    <!-- <img src="images/headerBIU.png" alt=""> -->
-    <h3 id="title">Bujumbura International University. Tentative Weekly time table <input type="text" name="WeekTime"></h3>
+<?php
+
+    include("admin/connexion.php");
+    $sql = "SELECT * FROM timetable "; 
+    $stmtSelect = $connexion->prepare($sql);
+    $stmtSelect ->execute();
+    $timeTables = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+    foreach($timeTables as $timeTable): 
+    ?>
+    <img src="images/headerBIU.png" alt="">
+    <h3 id="title">Bujumbura International University. Tentative Weekly time table: <?php echo $timeTable['weekTime'] ?></h3>
     <Table border="1">
         <tr>
-            <td colspan="8"><h3 id="title1"><span>Bac1</span>/10(Génie Logiciel)</h3></td>
+            <td colspan="8"><h3 id="title1"><span>Bac1</span>/<?php echo $timeTable['Promotion'] ?>(Génie Logiciel)</h3></td>
         </tr>
 
         <tr>
             <td colspan="2"><p>Promotion/Venue/Time Slots </p></td>
             <td>Monday</td>
-            <td> tueday</td>
+            <td>Tueday</td>
             <td>Wednesday</td>
             <td>Thursday</td>
             <td>Friday</td>
@@ -95,42 +101,37 @@ include("admin/connexion.php");
 
         <!--details-->
         <tr>
-            <td rowspan="9" id="horaireblue1"><p>Bac1/10</p></td>
+            <td rowspan="9" id="horaireblue1"><p>Bac1/<?php echo $timeTable['Promotion'] ?></p></td>
             
             
         </tr>
         <tr class="evenOddsCss">
             <td>8:00 - 10:00</td>
-            <td><select name="Mon8_10" id="options">
-                    <?php include 'optionsCours.php'; ?>
-                </select>
-                <!-- <input type="text" name="Mon8_10"> --></td>
-            <td>
-                <select name="Mon8_10" id="options">
-                    <?php include 'optionsCours.php'; ?>
-                </select></td>
-            <td><input type="text" name="Wed8_10"></td>
-            <td><input type="text" name="Thur8_10"></td>
-            <td><input type="text" name="Fri8_10"></td>
-            <td><input type="text" name="Sat8_10"></td>
+            <td><h4><?php echo $timeTable['mon8_10'] ?></h4></td>
+            <td><h3><?php echo $timeTable['tue8_10'] ?></h3></td>
+            <td><h3><?php echo $timeTable['wed8_10'] ?></h3></td>
+            <td><h3><?php echo $timeTable['thu8_10'] ?></h3></td>
+            <td><h3><?php echo $timeTable['fri8_10'] ?></h3></td>
+            <td><h3><?php echo $timeTable['sat8_10'] ?></h3></td>
+            
         </tr>
         <tr>
             <td id="horaireblue">10:00 - 10:15</td>
-            <td><input type="text" name="Mon10_15"></td>
-            <td><input type="text" name=" tue10_15"></td>
-            <td><input type="text" name="Wed10_15"></td>
-            <td><input type="text" name="Thur10_15"></td>
-            <td><input type="text" name="Fri10_15"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td id="horaireblue"></td>
         </tr>
         <tr>
             <td>10:15 - 12:00</td>
-            <td><input type="text" name="Mon10_1"></td>
-            <td><input type="text" name=" tue10_1"></td>
-            <td><input type="text" name="Wed10_1"></td>
-            <td><input type="text" name="Thur10_1"></td>
-            <td><input type="text" name="Fri10_1"></td>
-            <td><input type="text" name="Sat10_1"></td>
+            <td><h3><?php echo $timeTable['mon10_12'] ?></h3></td>
+            <td><h3><?php echo $timeTable['tue10_12'] ?></h3></td>
+            <td><h3><?php echo $timeTable['wed10_12'] ?></h3></td>
+            <td><h3><?php echo $timeTable['thu10_12'] ?></h3></td>
+            <td><h3><?php echo $timeTable['fri10_12'] ?></h3></td>
+            <td><h3><?php echo $timeTable['sat10_12'] ?></h3></td>
         </tr>
         <tr class="pause">
             <td id="horaireblue">12:00 - 13:00</td>
@@ -139,29 +140,28 @@ include("admin/connexion.php");
         </tr>
         <tr>
             <td>13:00 - 15:00</td>
-            <td><input type="text" name="Mon1_3"></td>
-            <td><input type="text" name=" tue1_3"></td>
-            <td><input type="text" name="Wed1_3"></td>
-            <td><input type="text" name="Thur1_3"></td>
-            <td><input type="text" name="Fri1_3"></td>
+            <td><h3><?php echo $timeTable['mon1_3'] ?></h3></td>
+            <td><h3><?php echo $timeTable['tue1_3'] ?></h3></td>
+            <td><h3><?php echo $timeTable['wed1_3'] ?></h3></td>
+            <td><h3><?php echo $timeTable['thu1_3'] ?></h3></td>
+            <td><h3><?php echo $timeTable['fri1_3'] ?></h3></td>
             <td rowspan="3"></td>
         </tr>
         <tr>
             <td id="horaireblue">15:00 - 15:15</td>
-            <td><input type="text" name="Mon3_315"></td>
-            <td><input type="text" name=" tue3_315"></td>
-            <td><input type="text" name="Wed3_315"></td>
-            <td><input type="text" name="Thur3_315"></td>
-            <td><input type="text" name="Fri3_315"></td>
-            
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
-            <td >15h30 - 17:00</td>
-            <td><input type="text" name="Mon315_5"></td>
-            <td><input type="text" name="tue315_5"></td>
-            <td><input type="text" name="Wed315_5"></td>
-            <td><input type="text" name="Thur315_5"></td>
-            <td><input type="text" name="Fri315_5"></td>
+        <td >15h30 - 17:00</td>
+            <td><h3><?php echo $timeTable['mon3_5'] ?></h3></td>
+            <td><h3><?php echo $timeTable['tue3_5'] ?></h3></td>
+            <td><h3><?php echo $timeTable['wed3_5'] ?></h3></td>
+            <td><h3><?php echo $timeTable['thu3_5'] ?></h3></td>
+            <td><h3><?php echo $timeTable['fri3_5'] ?></h3></td>
         </tr>
 
         <tr class = "rooms">
@@ -184,5 +184,8 @@ include("admin/connexion.php");
         <tr></tr>
         <tr></tr>
     </Table>
+    <?php
+        endforeach;
+    ?>
 </body>
 </html>
