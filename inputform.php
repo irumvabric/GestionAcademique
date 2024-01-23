@@ -101,77 +101,133 @@ include("admin/connexion.php");
         </tr>
         <tr class="evenOddsCss">
             <td>8:00 - 10:00</td>
-            <td><select name="Mon8_10" id="options">
-                    <?php include 'optionsCours.php'; ?>
-                </select>
-                <!-- <input type="text" name="Mon8_10"> --></td>
-            <td>
-                <select name="Mon8_10" id="options">
+            <td><select name="mon8_10" id="options">
                     <?php include 'optionsCours.php'; ?>
                 </select></td>
-            <td><input type="text" name="Wed8_10"></td>
-            <td><input type="text" name="Thur8_10"></td>
-            <td><input type="text" name="Fri8_10"></td>
-            <td><input type="text" name="Sat8_10"></td>
+            <td>
+                <select name="tue8_10" id="options">
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="wed8_10"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="thu8_10"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="fri8_10"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="sat8_10"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
         </tr>
         <tr>
             <td id="horaireblue">10:00 - 10:15</td>
-            <td><input type="text" name="Mon10_15"></td>
-            <td><input type="text" name=" tue10_15"></td>
-            <td><input type="text" name="Wed10_15"></td>
-            <td><input type="text" name="Thur10_15"></td>
-            <td><input type="text" name="Fri10_15"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td id="horaireblue"></td>
         </tr>
         <tr>
             <td>10:15 - 12:00</td>
-            <td><input type="text" name="Mon10_1"></td>
-            <td><input type="text" name=" tue10_1"></td>
-            <td><input type="text" name="Wed10_1"></td>
-            <td><input type="text" name="Thur10_1"></td>
-            <td><input type="text" name="Fri10_1"></td>
-            <td><input type="text" name="Sat10_1"></td>
+            <td><select name="mon10_12" id="options">
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td>
+                <select name="tue10_12" id="options">
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="wed10_12"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="thu10_12"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="fri10_12"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="sat10_12"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
         </tr>
         <tr class="pause">
             <td id="horaireblue">12:00 - 13:00</td>
-            <td colspan="5"></td>
+            <td colspan="5" id="horaireblue"></td>
             <td></td>
         </tr>
         <tr>
             <td>13:00 - 15:00</td>
-            <td><input type="text" name="Mon1_3"></td>
-            <td><input type="text" name=" tue1_3"></td>
-            <td><input type="text" name="Wed1_3"></td>
-            <td><input type="text" name="Thur1_3"></td>
-            <td><input type="text" name="Fri1_3"></td>
+            <td><select name="mon1_3" id="options">
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td>
+                <select name="tue1_3" id="options">
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="wed1_3"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="thu1_3"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="fri1_3"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
             <td rowspan="3"></td>
         </tr>
         <tr>
             <td id="horaireblue">15:00 - 15:15</td>
-            <td><input type="text" name="Mon3_315"></td>
-            <td><input type="text" name=" tue3_315"></td>
-            <td><input type="text" name="Wed3_315"></td>
-            <td><input type="text" name="Thur3_315"></td>
-            <td><input type="text" name="Fri3_315"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             
         </tr>
         <tr>
             <td >15h30 - 17:00</td>
-            <td><input type="text" name="Mon315_5"></td>
-            <td><input type="text" name="tue315_5"></td>
-            <td><input type="text" name="Wed315_5"></td>
-            <td><input type="text" name="Thur315_5"></td>
-            <td><input type="text" name="Fri315_5"></td>
+            <td><select name="mon3_5" id="options">
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td>
+                <select name="tue3_5" id="options">
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="wed3_5"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="thu3_5"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
+            <td><select name="fri3_5"  >
+                    <?php include 'optionsCours.php'; ?>
+                </select></td>
         </tr>
 
         <tr class = "rooms">
             <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
+            <td id="horairesalleyellow">
+                <select name="monRoom"  >
+                    <?php include 'optionsSalles.php'; ?>
+                </select></td>
+            <td id="horairesalleyellow"><select name="tueRoom"  >
+                    <?php include 'optionsSalles.php'; ?>
+                </select></td>
+            <td id="horairesalleyellow"><select name="wedRoom"  >
+                    <?php include 'optionsSalles.php'; ?>
+                </select></td>
+            <td id="horairesalleyellow"><select name="thuRoom"  >
+                    <?php include 'optionsSalles.php'; ?>
+                </select></td>
+            <td id="horairesalleyellow"><select name="friRoom"  >
+                    <?php include 'optionsSalles.php'; ?>
+                </select></td>
+            <td id="horairesalleyellow"><select name="satRoom"  >
+                    <?php include 'optionsSalles.php'; ?>
+                </select></td>
+            
         </tr>
 
         <!--end of table-->
@@ -180,9 +236,20 @@ include("admin/connexion.php");
             <td colspan="4">Code / Course / Lecturer</td>
             <td colspan="4">Department</td>
         </tr>
-        <tr></tr>
+        <tr>
+            <td colspan="4"><select name="satRoom"  >
+                    <?php include 'OptionsCours.php'; ?>
+                </select> / <select name="satRoom"  >
+                    <?php include 'optionsProfName.php'; ?>
+                </select> / <select name="satRoom"  >
+                    <?php include 'optionsSalles.php'; ?>
+                </select></td>
+            <td colspan="4"></td>
+        </tr>
         <tr></tr>
         <tr></tr>
     </Table>
+    <button name="submit">Save</button>
+    <button name="Add">Save</button>
 </body>
 </html>

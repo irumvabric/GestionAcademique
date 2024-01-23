@@ -77,6 +77,7 @@ form table,
 
 input[type='text'],
 input[type='number'],
+select,
 textarea {
   width: 100%;
   padding: 8px;
@@ -117,17 +118,10 @@ input[type='reset']:hover {
 </head>
 <body>
   
-  <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#professeur">Professeur</a>
-    <a href="#cour">Cour</a>
-    <a href="#faculte">Faculté</a>
-    <a href="#departement">Departement</a>
-    <a href="#salle">Salle</a>
-    <a href="#horaire">Horaire</a>
-    <a href="#promotion">Promotion</a>
-  </nav>
-	
+<?php
+    include("../Menu.php");
+  ?>
+  
   <div class="wrapper">
     <!-- Form section -->
     <div class="form">
@@ -146,7 +140,9 @@ input[type='reset']:hover {
 
             <tr>
               <td> Faculté</td>
-              <td><input type="text" name="Nom" /></td>
+              <td><select name="faculte"  >
+                    <?php include '../../optionsFaculte.php'; ?>
+                </select></td>
             </tr>
 
             <tr>
@@ -158,6 +154,36 @@ input[type='reset']:hover {
           </table>
         </form>
     </div>
+
+    <?php 
+    if(isset($_POST['submit']))
+    {
+        $id =$_POST['id'];
+        $Nom = $_POST['Nom'];
+        $faculte = $_POST['faculte'];
+        
+        
+        $insertDep = " insert into departement(idDepartement,nom,faculte) values(?,?,?)" ;
+        $stmtInsert = $connexion->prepare($insertDep) ;
+        $result = $stmtInsert->execute([$id,$Nom,$faculte]) ;
+
+        if($result){
+            echo "Succefully added";
+          }else{
+            echo "Data have not been added";
+          }
+    // $variable_affichage = $connexion ->query("select * from departement");
+    // while($bd_util =  $variable_affichage->fetch())
+    // {
+    //   if(($id ==$bd_util['idDepartement']))
+    //   {
+    //         echo('The course already exit in Database');
+    //     // header('location:home.php');
+      
+    //   }
+    // }
+    }
+?>
     <!-- Table section -->
     <div class="table">
     <table>
@@ -190,34 +216,6 @@ input[type='reset']:hover {
   </div>
  
   
-<?php 
-    if(isset($_POST['submit']))
-    {
-        $id =$_POST['id'];
-        $Nom = $_POST['Nom'];
-        $faculte = $_POST['faculte'];
-        
-        
-        $insertDep = " insert into departement(idDepartement,nom,faculte) values(?,?,?)" ;
-        $stmtInsert = $connexion->prepare($insertDep) ;
-        $result = $stmtInsert->execute([$id,$Nom,$faculte]) ;
 
-        if($result){
-            echo "Succefully added";
-          }else{
-            echo "Data have not been added";
-          }
-    $variable_affichage = $connexion ->query("select * from departement");
-    while($bd_util =  $variable_affichage->fetch())
-    {
-      if(($id ==$bd_util['idDepartement']))
-      {
-            echo('The course already exit in Database');
-        // header('location:home.php');
-      
-      }
-    }
-    }
-?>
 </body>
 </html>

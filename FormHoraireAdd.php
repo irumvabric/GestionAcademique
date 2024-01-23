@@ -208,7 +208,7 @@
                     <?php include 'optionsCours.php'; ?>
                 </select>
             
-                    <!-- Repeat for other time slots -->
+                    
 
             <label for="Description">Description</label>
             <textarea name="Desc" rows="4" cols="50"></textarea>

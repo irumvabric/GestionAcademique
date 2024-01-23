@@ -83,6 +83,7 @@ form table,
 
 input[type='text'],
 input[type='email'],
+select,
 input[type='number'],
 textarea {
   width: auto;
@@ -124,16 +125,9 @@ input[type='reset']:hover {
 </head>
 <body>
   
-  <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#professeur">Professeur</a>
-    <a href="#cour">Cour</a>
-    <a href="#faculte">Faculté</a>
-    <a href="#departement">Departement</a>
-    <a href="#salle">Salle</a>
-    <a href="#horaire">Horaire</a>
-    <a href="#promotion">Promotion</a>
-  </nav>
+<?php
+    include("../Menu.php");
+  ?>
 	
   <div class="wrapper">
     <!-- Form section -->
@@ -160,10 +154,12 @@ input[type='reset']:hover {
         <td><input type="text" name="diplome" /></td>
       </tr>
 
-      <!-- <tr>
-        <td> Date embauche</td>
-        <td><input type="date" name="dateEmbauche" /></td>
-      </tr> -->
+      <tr>
+        <td> Cours</td>
+        <td><select name="CoursId"  >
+                    <?php include '../../optionsCours.php'; ?>
+            </select></td>
+      </tr>
 
       <tr>
         <td> Tel</td>
@@ -184,6 +180,54 @@ input[type='reset']:hover {
           </table>
         </form>
     </div>
+
+    <?php 
+if(isset($_POST['submit']))
+{
+    $idEnseignant = $_POST['idEnseignant'];
+    $nom =$_POST['nom'];
+	$prenom = $_POST['prenom'];
+    $Diplome = $_POST['diplome'];
+    $CoursId = $_POST['CoursId'];
+    $tel =$_POST['tel'];
+	$email = $_POST['email'];
+
+    
+    $insertProf = " insert into professeur(id_enseignant,nom,prenom,Diplome,idCourstelephone,email) values(?,?,?,?,?,?,?)" ;
+    $stmtInsert = $connexion->prepare($insertProf) ;
+    $result = $stmtInsert->execute([$idEnseignant,$nom,$prenom,$Diplome,$CoursId,$tel,$email]) ;
+
+    if($result){
+        echo "Succefully added";
+      }else{
+        echo "Data have not been added";
+      }
+// $variable_affichage = $connexion ->query("select * from Professeur");
+// while($bd_util =  $variable_affichage->fetch())
+// {
+// 	if(( $idEnseignant ==$bd_util['id_enseignant']))
+// 	{
+//         echo "L\'enseignant est deja dans la base de données";
+// 		// header('location:home.php');
+	
+// 	}
+// 	else
+// 	{
+		
+//         // $insertUser = " insert into utilisateur(nom,prenom,tel,email,username,password) values(?,?,?,?,?,?)" ;
+//         // $stmtInsert = $connexion->prepare($insertUser) ;
+//         // $result = $stmtInsert->execute([$nom,$prenom,$tel,$email,$user_name,$psw]) ;
+    
+//         // if($result){
+//         //     echo "Succefully added";
+//         //   }else{
+//         //     echo "Data have not been added";
+//         //   }
+// 	}
+
+// }
+}
+?>
     <!-- Table section -->
     <div class="table">
     <table>
@@ -221,52 +265,5 @@ input[type='reset']:hover {
       </div>
   </div>
  
-  <?php 
-if(isset($_POST['submit']))
-{
-    $idEnseignant = $_POST['idEnseignant'];
-    $nom =$_POST['nom'];
-	$prenom = $_POST['prenom'];
-    $Diplome = $_POST['diplome'];
-    // $date_embauche = $_POST['dateEmbauche'];
-    $tel =$_POST['tel'];
-	$email = $_POST['email'];
-
-    
-    $insertProf = " insert into professeur(id_enseignant,nom,prenom,Diplome,telephone,email) values(?,?,?,?,?,?)" ;
-    $stmtInsert = $connexion->prepare($insertProf) ;
-    $result = $stmtInsert->execute([$idEnseignant,$nom,$prenom,$Diplome,$tel,$email]) ;
-
-    if($result){
-        echo "Succefully added";
-      }else{
-        echo "Data have not been added";
-      }
-$variable_affichage = $connexion ->query("select * from Professeur");
-while($bd_util =  $variable_affichage->fetch())
-{
-	if(( $idEnseignant ==$bd_util['id_enseignant']))
-	{
-        echo "L\'enseignant est deja dans la base de données";
-		// header('location:home.php');
-	
-	}
-	else
-	{
-		
-        // $insertUser = " insert into utilisateur(nom,prenom,tel,email,username,password) values(?,?,?,?,?,?)" ;
-        // $stmtInsert = $connexion->prepare($insertUser) ;
-        // $result = $stmtInsert->execute([$nom,$prenom,$tel,$email,$user_name,$psw]) ;
-    
-        // if($result){
-        //     echo "Succefully added";
-        //   }else{
-        //     echo "Data have not been added";
-        //   }
-	}
-
-}
-}
-?>
 </body>
 </html>

@@ -117,16 +117,10 @@ input[type='reset']:hover {
 </head>
 <body>
   
-  <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#professeur">Professeur</a>
-    <a href="#cour">Cour</a>
-    <a href="#faculte">Faculté</a>
-    <a href="#departement">Departement</a>
-    <a href="#salle">Salle</a>
-    <a href="#horaire">Horaire</a>
-    <a href="#promotion">Promotion</a>
-  </nav>
+  
+  <?php
+    include("../Menu.php");
+  ?>
 	
   <div class="wrapper">
     <!-- Form section -->
@@ -144,10 +138,10 @@ input[type='reset']:hover {
               <td><input type="text" name="Nom" /></td>
             </tr>
 
-            <tr>
+            <!-- <tr>
               <td> Faculté</td>
               <td><input type="text" name="Faculte" /></td>
-            </tr>
+            </tr> -->
 
             <tr>
               <td colspan="2">
@@ -158,12 +152,43 @@ input[type='reset']:hover {
           </table>
         </form>
     </div>
+
+
+    <?php 
+    if(isset($_POST['submit']))
+    {
+        $id =$_POST['id'];
+        $Nom = $_POST['Nom'];
+        // $Faculte = $_POST['Faculte'];
+        
+        
+        $insertFac = " insert into faculte(id,nom) values(?,?)" ;
+        $stmtInsert = $connexion->prepare($insertFac) ;
+        $result = $stmtInsert->execute([$id,$Nom]) ;
+
+        if($result){
+            echo "Succefully added";
+          }else{
+            echo "Data have not been added";
+          }
+    // $variable_affichage = $connexion ->query("select * from faculte");
+    // while($bd_util =  $variable_affichage->fetch())
+    // {
+    //   if(($id ==$bd_util['id']))
+    //   {
+    //         echo('The course already exit in Database');
+    //     // header('location:home.php');
+      
+    //   }
+    // }
+    }
+?>
     <!-- Table section -->
     <div class="table">
     <table>
             <tr>
-              <th>id Departement</th>
-              <th>Nom Departement</th>
+              <th>id Faculté</th>
+              
               <th>Nom Faculté</th>
               <th>Functions</th>
             </tr>
@@ -177,9 +202,9 @@ input[type='reset']:hover {
                 foreach($departements as $departement): 
                 ?>
             <tr>
-                <td> <?php echo $departement['idDepartement'];?></td>
+                <td> <?php echo $departement['id'];?></td>
                 <td><?php echo $departement['nom']; ?></td>
-                <td><?php echo $departement['Faculte']; ?></td>
+                
                 <td>Edit || Delete</td>
             </tr>
             <?php 
@@ -189,35 +214,6 @@ input[type='reset']:hover {
       </div>
   </div>
  
-  
-<?php 
-    if(isset($_POST['submit']))
-    {
-        $id =$_POST['id'];
-        $Nom = $_POST['Nom'];
-        $Faculte = $_POST['Faculte'];
-        
-        
-        $insertDep = " insert into faculte(id,nom) values(?,?)" ;
-        $stmtInsert = $connexion->prepare($insertDep) ;
-        $result = $stmtInsert->execute([$id,$Nom]) ;
 
-        if($result){
-            echo "Succefully added";
-          }else{
-            echo "Data have not been added";
-          }
-    $variable_affichage = $connexion ->query("select * from faculte");
-    while($bd_util =  $variable_affichage->fetch())
-    {
-      if(($id ==$bd_util['id']))
-      {
-            echo('The course already exit in Database');
-        // header('location:home.php');
-      
-      }
-    }
-    }
-?>
 </body>
 </html>

@@ -117,16 +117,9 @@ input[type='reset']:hover {
 </head>
 <body>
   
-  <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#professeur">Professeur</a>
-    <a href="#cour">Cour</a>
-    <a href="#faculte">Faculté</a>
-    <a href="#departement">Departement</a>
-    <a href="#salle">Salle</a>
-    <a href="#horaire">Horaire</a>
-    <a href="#promotion">Promotion</a>
-  </nav>
+<?php
+    include("../Menu.php");
+  ?>
 	
   <div class="wrapper">
     <!-- Form section -->
@@ -164,6 +157,37 @@ input[type='reset']:hover {
           </table>
         </form>
     </div>
+
+
+    <?php 
+    if(isset($_POST['submit']))
+    {
+        $id =$_POST['id'];
+      $intitule = $_POST['intitule'];
+        $NbrCredit =$_POST['NbrCredit'];
+      $Description = $_POST['Desc'];
+        
+        $insertCourse = " insert into cour(id,intitule,NbrCredit,Description) values(?,?,?,?)" ;
+        $stmtInsert = $connexion->prepare($insertCourse) ;
+        $result = $stmtInsert->execute([$id,$intitule,$NbrCredit,$Description]) ;
+
+        if($result){
+            echo "Succefully added";
+          }else{
+            echo "Data have not been added";
+          }
+    // $variable_affichage = $connexion ->query("select * from cour");
+    // while($bd_util =  $variable_affichage->fetch())
+    // {
+    //   if(($id ==$bd_util['id']))
+    //   {
+    //         echo('The course already exit in Database');
+    //     // header('location:home.php');
+      
+    //   }
+    // }
+    }
+?>
     <!-- Table section -->
     <div class="table">
     <table>
@@ -198,34 +222,6 @@ input[type='reset']:hover {
   </div>
  
   
-<?php 
-    if(isset($_POST['submit']))
-    {
-        $id =$_POST['id'];
-      $intitule = $_POST['intitule'];
-        $NbrCredit =$_POST['NbrCredit'];
-      $Description = $_POST['Desc'];
-        
-        $insertCourse = " insert into cour(id,intitule,NbrCredit,Description) values(?,?,?,?)" ;
-        $stmtInsert = $connexion->prepare($insertCourse) ;
-        $result = $stmtInsert->execute([$id,$intitule,$NbrCredit,$Description]) ;
 
-        if($result){
-            echo "Succefully added";
-          }else{
-            echo "Data have not been added";
-          }
-    $variable_affichage = $connexion ->query("select * from cour");
-    while($bd_util =  $variable_affichage->fetch())
-    {
-      if(($id ==$bd_util['id']))
-      {
-            echo('The course already exit in Database');
-        // header('location:home.php');
-      
-      }
-    }
-    }
-?>
 </body>
 </html>

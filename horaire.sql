@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 22 jan. 2024 à 21:53
+-- Généré le : mar. 23 jan. 2024 à 13:23
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.0.23
 
@@ -84,7 +84,10 @@ CREATE TABLE `departement` (
 --
 
 INSERT INTO `departement` (`idDepartement`, `nom`, `Faculte`) VALUES
-('BST-2154', 'nbnb', '');
+('BST-21', 'nbnbJ7', 'BST-2157'),
+('BST-2154', 'nbnb', ''),
+('BST-21577', 'nbnb', 'BST-2157'),
+('BST-21588', 'nbnbJJ', 'BST-2157');
 
 -- --------------------------------------------------------
 
@@ -102,6 +105,7 @@ CREATE TABLE `faculte` (
 --
 
 INSERT INTO `faculte` (`id`, `nom`) VALUES
+('BST-2', 'nbnbJJ'),
 ('BST-2157', 'nbnb');
 
 -- --------------------------------------------------------
@@ -169,8 +173,7 @@ CREATE TABLE `salle` (
 --
 
 INSERT INTO `salle` (`idSalle`, `Nom`, `NbrPlaces`, `EtatSalleOccup`) VALUES
-('BIU-Salle', 'brice berry', 256, 1),
-('BIU-Salle-124', 'brice berry', 425, 1);
+('BIU-Salle', 'ntira', 256, 0);
 
 -- --------------------------------------------------------
 

@@ -118,14 +118,15 @@ input[type='reset']:hover {
 <body>
   
   <nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#professeur">Professeur</a>
-    <a href="#cour">Cour</a>
-    <a href="#faculte">Faculté</a>
-    <a href="#departement">Departement</a>
-    <a href="#salle">Salle</a>
-    <a href="#horaire">Horaire</a>
-    <a href="#promotion">Promotion</a>
+    <a href="../../home.php">Accueil</a>
+    <a href="../GestionProf/AjoutProf.php">Professeur</a>
+    <a href="../GestionCours/ajoutCours.php">Cour</a>
+    <a href="../GestionFaculte/Faculte.php">Faculté</a>
+    <a href="../GestionDepartement/Departement.php">Departement</a>
+    <a href="../GestionSalles/AjoutSalles.php">Salle</a>
+    <a href="">Horaire</a>
+    <a href="../GestionClasse/ajoutClasse.php">Classe</a>
+    <a href="../GestionPromotion/ajoutPromotion.php">Promotion</a>
   </nav>
 	
   <div class="wrapper">
@@ -158,6 +159,37 @@ input[type='reset']:hover {
           </table>
         </form>
     </div>
+
+
+    <?php 
+    if(isset($_POST['submit']))
+    {
+        
+        $Nom = $_POST['Nom'];
+        $NombreEtudiants = $_POST['NombreEtudiants'];
+        
+        
+        $insertDep = " insert into promotion(Nom,NombreEtudiants) values(?,?)" ;
+        $stmtInsert = $connexion->prepare($insertDep) ;
+        $result = $stmtInsert->execute([$Nom,$NombreEtudiants]) ;
+
+        if($result){
+            echo "Succefully added";
+          }else{
+            echo "Data have not been added";
+          }
+    // $variable_affichage = $connexion ->query("select * from promotion");
+    // while($bd_util =  $variable_affichage->fetch())
+    // {
+    //   if(($Nom ==$bd_util['nom']))
+    //   {
+    //         echo('The course already exit in Database');
+    //     // header('location:home.php');
+      
+    //   }
+    // }
+    }
+?>
     <!-- Table section -->
     <div class="table">
     <table>
@@ -190,34 +222,6 @@ input[type='reset']:hover {
   </div>
  
   
-<?php 
-    if(isset($_POST['submit']))
-    {
-        
-        $Nom = $_POST['Nom'];
-        $NombreEtudiants = $_POST['NombreEtudiants'];
-        
-        
-        $insertDep = " insert into promotion(Nom,NombreEtudiants) values(?,?)" ;
-        $stmtInsert = $connexion->prepare($insertDep) ;
-        $result = $stmtInsert->execute([$Nom,$NombreEtudiants]) ;
 
-        if($result){
-            echo "Succefully added";
-          }else{
-            echo "Data have not been added";
-          }
-    // $variable_affichage = $connexion ->query("select * from promotion");
-    // while($bd_util =  $variable_affichage->fetch())
-    // {
-    //   if(($Nom ==$bd_util['nom']))
-    //   {
-    //         echo('The course already exit in Database');
-    //     // header('location:home.php');
-      
-    //   }
-    // }
-    }
-?>
 </body>
 </html>
