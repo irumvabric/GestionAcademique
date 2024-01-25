@@ -11,7 +11,7 @@ include("admin/connexion.php");
             echo '<option value="' . $row["id_enseignant"] . '">' . $row["nom"] . $row["prenom"].'</option>';
         }
     } else {
-        echo '<option value="">No courses available</option>';
+        echo '<option value="">No Professeur available</option>';
     }
 
 ?>

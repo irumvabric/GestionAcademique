@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 23 jan. 2024 à 13:23
+-- Généré le : jeu. 25 jan. 2024 à 12:11
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.0.23
 
@@ -119,7 +119,7 @@ CREATE TABLE `professeur` (
   `nom` varchar(30) NOT NULL,
   `prenom` varchar(30) NOT NULL,
   `Diplome` varchar(30) NOT NULL,
-  `idCours` varchar(20) NOT NULL,
+  `idCours` varchar(10) NOT NULL,
   `telephone` varchar(10) NOT NULL,
   `email` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -183,7 +183,7 @@ INSERT INTO `salle` (`idSalle`, `Nom`, `NbrPlaces`, `EtatSalleOccup`) VALUES
 
 CREATE TABLE `timetable` (
   `idTimetable` int(11) NOT NULL,
-  `weekTime` varchar(20) NOT NULL,
+  `weekTime` varchar(20) DEFAULT NULL,
   `idCours` varchar(20) NOT NULL,
   `idProfesseur` varchar(20) NOT NULL,
   `idSalle` varchar(20) NOT NULL,
@@ -210,15 +210,25 @@ CREATE TABLE `timetable` (
   `fri1_3` varchar(15) DEFAULT NULL,
   `fri3_5` varchar(15) DEFAULT NULL,
   `sat8_10` varchar(15) DEFAULT NULL,
-  `sat10_12` varchar(15) DEFAULT NULL
+  `sat10_12` varchar(15) DEFAULT NULL,
+  `monRoom` varchar(10) DEFAULT NULL,
+  `tueRoom` varchar(10) DEFAULT NULL,
+  `wedRoom` varchar(10) DEFAULT NULL,
+  `thuRoom` varchar(10) DEFAULT NULL,
+  `friRoom` varchar(10) DEFAULT NULL,
+  `satRoom` varchar(10) DEFAULT NULL,
+  `CodeCourse` varchar(10) DEFAULT NULL,
+  `course` varchar(10) DEFAULT NULL,
+  `Lecturer` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `timetable`
 --
 
-INSERT INTO `timetable` (`idTimetable`, `weekTime`, `idCours`, `idProfesseur`, `idSalle`, `Promotion`, `Departement`, `mon8_10`, `tue8_10`, `mon10_12`, `mon1_3`, `mon3_5`, `tue10_12`, `tue1_3`, `tue3_5`, `wed8_10`, `wed10_12`, `wed1_3`, `wed3_5`, `thu8_10`, `thu10_12`, `thu1_3`, `thu3_5`, `fri8_10`, `fri10_12`, `fri1_3`, `fri3_5`, `sat8_10`, `sat10_12`) VALUES
-(4, '7- 7 DEcember 2024', '', '', '', 'P9', 'Geniie Logiciel', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154');
+INSERT INTO `timetable` (`idTimetable`, `weekTime`, `idCours`, `idProfesseur`, `idSalle`, `Promotion`, `Departement`, `mon8_10`, `tue8_10`, `mon10_12`, `mon1_3`, `mon3_5`, `tue10_12`, `tue1_3`, `tue3_5`, `wed8_10`, `wed10_12`, `wed1_3`, `wed3_5`, `thu8_10`, `thu10_12`, `thu1_3`, `thu3_5`, `fri8_10`, `fri10_12`, `fri1_3`, `fri3_5`, `sat8_10`, `sat10_12`, `monRoom`, `tueRoom`, `wedRoom`, `thuRoom`, `friRoom`, `satRoom`, `CodeCourse`, `course`, `Lecturer`) VALUES
+(4, '7- 7 DEcember 2024', '', '', '', 'P9', 'Geniie Logiciel', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, '7- 78 December 2021', '', '', '', '', '', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BIU-Salle', 'BIU-Salle', 'BIU-Salle', 'BIU-Salle', 'BIU-Salle', 'BIU-Salle', 'BST-2150', 'BST-2150', 'BIU-Salle');
 
 -- --------------------------------------------------------
 
@@ -311,7 +321,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `timetable`
 --
 ALTER TABLE `timetable`
-  MODIFY `idTimetable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idTimetable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`

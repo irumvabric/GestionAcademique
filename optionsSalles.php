@@ -15,7 +15,7 @@ include("admin/connexion.php");
             echo '<option value="' . $row["idSalle"] . '">' . $row["Nom"] . '</option>';
         }
     } else {
-        echo '<option value="">No courses available</option>';
+        echo '<option value="">No Salle available</option>';
     }
 
 ?>
