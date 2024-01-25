@@ -15,25 +15,25 @@ include("../connexion.php");
 }
 
 nav {
-      background-color: #45a000;
-      color: #fff;
-      text-align: center;
-      padding: 1em;
-    }
+  background-color: #45a049;
+  color: #fff;
+  text-align: center;
+  padding: 1em;
+}
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      margin: 0 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
 
-    nav a:hover {
-      color: #000;
-      background-color: #45a569;
-    }
+nav a:hover {
+  color: #000;
+  background-color: #45a569;
+}
 
 .wrapper {
   display: flex;
@@ -76,8 +76,8 @@ form table,
 }
 
 input[type='text'],
-select,
 input[type='number'],
+select,
 textarea {
   width: 100%;
   padding: 8px;
@@ -114,6 +114,8 @@ input[type='reset']:hover {
   font-size: 36px;
   text-align: center;
 }
+
+
 </style>
 </head>
 <body>
@@ -126,12 +128,14 @@ input[type='reset']:hover {
     <!-- Form section -->
     <div class="form">
         <form method="POST">
-        <h1>Ajout Classe</h1>
+        <h1>Modifier Classe</h1>
           <table>
-              <tr>
+              <!-- <tr>
                 <td> ID Classe </td>
-                <td><input type="text" name="id" /></td>
-              </tr>
+                <td><select name="id" id="options">
+                    <?php include '../../option/optionsClasseId.php'; ?>
+                </select></td>
+              </tr> -->
 
 
               <tr>
@@ -168,64 +172,42 @@ input[type='reset']:hover {
               </tr>
             <tr>
               <td colspan="2">
-                <input type="submit" name="submit" value="Save" />
+                <input type="submit" name="Modify" value="Modify" />
                 <input type="reset" value="Cancel" />
               </td>
             </tr>
           </table>
         </form>
     </div>
-
-    <?php 
-    if(isset($_POST['submit']))
-    {
-        $id =$_POST['id'];
-        $Nom = $_POST['Nom'];
-        $Departemt =$_POST['Departemt'];
-        $Faculte = $_POST['Faculte'];
-        $Promotion = $_POST['Promotion'];
-        $NombreEtudiants = $_POST['NombreEtudiants'];
-                                              
-        
-        $insertClasse = " insert into classe(id,Nom,Departement,Faculte,Promotion,NumberStudents) values(?,?,?,?,?,?)" ;
-        $stmtInsert = $connexion->prepare($insertClasse) ;
-        $result = $stmtInsert->execute([$id,$Nom,$Departemt,$Faculte,$Promotion,$NombreEtudiants]) ;
-
-        if($result){
-            echo "Succefully added";
-          }else{
-            echo "Data have not been added";
-          }
-    // $variable_affichage = $connexion ->query("select * from classe");
-    // while($bd_util =  $variable_affichage->fetch())
-    // {
-    //   if(($id ==$bd_util['id']))
-    //   {
-    //         echo('The course already exit in Database');
-    //     // header('location:home.php');
-      
-    //   }
-    // }
-    }
-?>
-
-
 <?php
-    if(isset($_GET["supp"])){
-        $Recusup=$_GET["supp"];
-        $suputil=$connexion -> query ("delete * from classe where id=$Recusup");
-    }
-    ?>
+			
+            $IdUt = $_GET["modife"];
+            $modiU = $connexion -> query("SELECT * FROM classe WHERE id = '$IdUt'");
+            $UtiData = $modiU -> fetch();
+            
+            if (isset($UtiData['namU'])) {
+                $nameUti = $UtiData['namU'];
+                $preU= $UtiData['prenomU'];
+                $proU=$UtiData['profilU'];
+                $pswU=$UtiData['motpasse'];
+            } else {
+                $nameUti = "";
+                $preU = "";
+                $proU = "";
+                $pswU = "";
+            } 
+		?>
     <!-- Table section -->
     <div class="table">
     <table>
             <tr>
               <th>ID Classe</th>
+              <th>Nom</th>
               <th>Faculte</th>
               <th>Departement</th>
               <th>Promotion</th>
               <th>Nombre d'étudiants</th>
-              <th>Functions</th>
+              <!-- <th>Functions</th> -->
             </tr>
             <?php
 
@@ -239,11 +221,12 @@ input[type='reset']:hover {
             <tr>
           	
                 <td> <?php echo $classe['id'];?></td>
+                <td> <?php echo $classe['Nom'];?></td>
                 <td><?php echo $classe['Faculte']; ?></td>
                 <td> <?php echo $classe['Departement'];?></td> 
                 <td> <?php echo $classe['Promotion'];?></td> 
                 <td> <?php echo $classe['NumberStudents'];?></td> 
-                <td><a href="ModifierClasse.php?modife=<?php echo $classe['id'] ?>"> Edit || <a href="Administrateur.php?supp=<?php echo $classe['id'];?>">Delete</td>
+                <!-- <td><a href="ModifierUtilisateur.php?modife=<?php echo $classe['id'] ?>"> Edit || <a href="Administrateur.php?supp=<?php echo $classe['id'];?>">Delete</td> -->
             </tr>
             <?php 
               endforeach;
@@ -252,7 +235,23 @@ input[type='reset']:hover {
       </div>
   </div>
  
-  
+  <?php 
+              if(isset($_POST['Modify'])) {
+                // $id =$_POST['id'];
+                $Nom = $_POST['Nom'];
+                $Departemt =$_POST['Departement'];
+                $Faculte = $_POST['Faculte'];
+                $Promotion = $_POST['Promotion'];
+                $NombreEtudiants = $_POST['NombreEtudiants'];
+                $modif_classe = "UPDATE classe SET Nom = '?',Departement = '?',Faculte = '?',Promotion = '?',NumberStudents = '?' WHERE id = '?'";
+
+                $stmtInsert = $connexion->prepare($modif_classe) ;
+                $result = $stmtInsert->execute([$Nom,$Departemt,$Faculte,$Promotion,$NombreEtudiants,$IdUt]) ;
+                // $connexion -> exec($modif_classe);
+
+                header("location: ajoutClasse.php");
+            }
+        ?>
 
 </body>
 </html>

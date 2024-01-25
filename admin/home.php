@@ -3,143 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Gestion Eleve</title>
   <style>
-        .card-container {
-          margin-top: 10%;
-          margin-left: 10%;
-          margin-right: auto;
-          width: 85%;
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 10px;
-        }
+   body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #c7c7c7;
+    }
 
-        .card {
-          width: 100%;
-        }
+    header {
+      background-color: #45aF50;
+      color: #fff;
+      text-align: center;
+      padding: 1em;
+    }
 
-        .card-title{
-          font-size: 30px;
-          color: #fff;
-        }
+    nav {
+      background-color: #45a000;
+      color: #fff;
+      text-align: center;
+      padding: 1em;
+    }
 
-        .card-body{
-          display: flex;
-        }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
 
-        img{
-          margin:auto 12px;
-          width: 75px;
-          height: 50px;
-        }
+    nav a:hover {
+      color: #000;
+      background-color: #45a569;
+    }
 
-        a{
-          text-decoration: none;
-        }
+    section {
+      padding: 20px;
+      margin-left: 20%;
+      margin-right: 20%;
+      margin-top: 3%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      justify-content: center;
+    }
 
-        .container-fluid img{
-          margin:auto 12px;
-          width: 140px;
-          height: 50px;
-        }
+    .card {
+      background-color: #fff;
+      color: #333;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
 
+    .card a{
+        text-decoration: none;
+        color:#000;
+
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+
+    .card1 {
+      background-color: #45a569;
+      
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+      border:1px solid #45a000;
+    }
+
+    .card1 a{
+        
+        text-decoration: none;
+        color: #fff;
+
+    }
+
+    .card1:hover {
+      transform: translateY(-5px);
+    }
 
   </style>
+  <title>Gestion Horaire</title>
 </head>
 <body>
-  <div class="container">
-      <nav class="navbar navbar-expand-lg bg-body-tertiary ">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="../images/Menu.png" alt=""></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li> -->
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
-  </div>
-  <a href="GestionCours/homecours.php"><div class="card-container">
-        <div class="card text-bg-primary mb-3" style="max-width: 18rem;">
-         
-        <div class="card-body">
-          <img src="../images/person.png" alt="">
-          <h5 class="card-title">Gestion Cours</h5>
-          
-        </div>
-      </div></a>
 
-      <a href="ficheEleve.php">
-      <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
-         
-        <div class="card-body">
-          <img src="../images/book.png" alt="">
-          <h5 class="card-title">Gestion Horaires</h5>
-            
-        </div>
-      </div>
-      </a>
-      <a href="ListeEleves.php">
-      <div class="card text-bg-success mb-3" style="max-width: 18rem;">
-         
-        <div class="card-body">
-          <img src="images/person.png" alt="">
-          <h5 class="card-title">Gestion Instucteurs</h5>
-            
-        </div>
-      </div></a>
+  <header>
+    <h1>Gestion Horaire</h1>
+  </header>
 
-      <div class="card-body">
-          <img src="images/person.png" alt="">
-          <h5 class="card-title">Gestion Utilisateurs</h5>
-            
-        </div>
-      </div></a>
+  <nav>
+    <a href="../home.php">Accueil</a>
+    <a href="GestionProf/AjoutProf.php">Professeur</a>
+    <a href="GestionCours/ajoutCours.php">Cour</a>
+    <a href="GestionFaculte/Faculte.php">Faculté</a>
+    <a href="GestionDepartement/Departement.php">Departement</a>
+    <a href="GestionSalles/AjoutSalles.php">Salle</a>
+    <a href="../inputform.php">Horaire</a>
+    <a href="GestionClasse/ajoutClasse.php">Classe</a>
+    <a href="GestionPromotion/ajoutPromotion.php">Promotion</a>
+  </nav>
 
-      <div class="card-body">
-          <img src="images/person.png" alt="">
-          <h5 class="card-title">Gestion Salle de Classe</h5>
-            
-        </div>
-      </div></a>
+  <section>
 
-      <div class="card-body">
-          <img src="images/person.png" alt="">
-          <h5 class="card-title">Deconnexion</h5>
-            
-        </div>
-      </div></a>
-  </div>
+    <div class="card1">
+      <a href="inputform.php">Créer Nouveau Horaire</a>
+    </div>
 
- 
+    <div class="card1">
+      <a href="recherche.php">Recherche d'une Horaire</a>
+    </div>
+    <div class="card">
+      <a href="admin/GestionCours/ajoutCours.php">Gestion Cours</a>
+    </div>
+
+    <div class="card">
+      <a href="admin/GestionProf/AjoutProf.php">Gestion Professeur</a>
+    </div>
+
+    <div class="card">
+      <a href="admin/GestionFaculte/Faculte.php">Gestion Faculté</a>
+    </div>
+
+    <div class="card">
+      <a href="admin/GestionDepartement/Departement.php">Gestion Departement</a>
+    </div>
+
+    <div class="card">
+      <a href="admin/GestionPromotion/ajoutPromotion.php">Gestion Promotion</a>
+    </div>
+
+    <div class="card">
+      <a href="admin/GestionSalles/AjoutSalles.php">Gestion Salles</a>
+    </div>
+  </section>
+
 </body>
 </html>

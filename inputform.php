@@ -105,9 +105,9 @@ include("admin/connexion.php");
     <Table border="1">
         <tr>
             <td colspan="8"><h3 id="title1"><span>Bac1</span>/<select name="Promotion" id="options">
-                    <?php include 'optionsPromotion.php'; ?>
+                    <?php include 'option/optionsPromotion.php'; ?>
                 </select>(<select name="Departement" id="options">
-                    <?php include 'optionsDepartement.php'; ?>
+                    <?php include 'option/optionsDepartement.php'; ?>
                 </select>)</h3></td>
         </tr>
 
@@ -131,23 +131,23 @@ include("admin/connexion.php");
         <tr class="evenOddsCss">
             <td>8:00 - 10:00</td>
             <td><select name="mon8_10" id="options">
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td>
                 <select name="tue8_10" id="options">
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="wed8_10"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="thu8_10"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="fri8_10"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="sat8_10"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
         </tr>
         <tr>
@@ -162,23 +162,23 @@ include("admin/connexion.php");
         <tr>
             <td>10:15 - 12:00</td>
             <td><select name="mon10_12" id="options">
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td>
                 <select name="tue10_12" id="options">
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="wed10_12"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="thu10_12"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="fri10_12"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="sat10_12"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
         </tr>
         <tr class="pause">
@@ -189,20 +189,20 @@ include("admin/connexion.php");
         <tr>
             <td>13:00 - 15:00</td>
             <td><select name="mon1_3" id="options">
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td>
                 <select name="tue1_3" id="options">
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="wed1_3"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="thu1_3"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="fri1_3"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td rowspan="3"></td>
         </tr>
@@ -218,20 +218,20 @@ include("admin/connexion.php");
         <tr>
             <td >15h30 - 17:00</td>
             <td><select name="mon3_5" id="options">
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td>
                 <select name="tue3_5" id="options">
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="wed3_5"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="thu3_5"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
             <td><select name="fri3_5"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select></td>
         </tr>
 
@@ -239,22 +239,22 @@ include("admin/connexion.php");
             <td id="horairesalleyellow"></td>
             <td id="horairesalleyellow">
                 <select name="monRoom"  >
-                    <?php include 'optionsSalles.php'; ?>
+                    <?php include 'option/optionsSalles.php'; ?>
                 </select></td>
             <td id="horairesalleyellow"><select name="tueRoom"  >
-                    <?php include 'optionsSalles.php'; ?>
+                    <?php include 'option/optionsSalles.php'; ?>
                 </select></td>
             <td id="horairesalleyellow"><select name="wedRoom"  >
-                    <?php include 'optionsSalles.php'; ?>
+                    <?php include 'option/optionsSalles.php'; ?>
                 </select></td>
             <td id="horairesalleyellow"><select name="thuRoom"  >
-                    <?php include 'optionsSalles.php'; ?>
+                    <?php include 'option/optionsSalles.php'; ?>
                 </select></td>
             <td id="horairesalleyellow"><select name="friRoom"  >
-                    <?php include 'optionsSalles.php'; ?>
+                    <?php include 'option/optionsSalles.php'; ?>
                 </select></td>
             <td id="horairesalleyellow"><select name="satRoom"  >
-                    <?php include 'optionsSalles.php'; ?>
+                    <?php include 'option/optionsSalles.php'; ?>
                 </select></td>
             
         </tr>
@@ -267,11 +267,11 @@ include("admin/connexion.php");
         </tr>
         <tr>
             <td colspan="4"><select name="code"  >
-                    <?php include 'optionsCoursId.php'; ?>
+                    <?php include 'option/optionsCoursId.php'; ?>
                 </select> / <select name="course"  >
-                    <?php include 'optionsCours.php'; ?>
+                    <?php include 'option/optionsCours.php'; ?>
                 </select> / <select name="Lecteur"  >
-                    <?php include 'optionsProfName.php'; ?>
+                    <?php include 'option/optionsProfName.php'; ?>
                 </select></td>
             <td colspan="4"></td>
         </tr>

@@ -15,25 +15,25 @@ include("../connexion.php");
 }
 
 nav {
-  background-color: #45a049;
-  color: #fff;
-  text-align: center;
-  padding: 1em;
-}
+      background-color: #45a000;
+      color: #fff;
+      text-align: center;
+      padding: 1em;
+    }
 
-nav a {
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 20px;
-  margin: 0 10px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
 
-nav a:hover {
-  color: #000;
-  background-color: #45a569;
-}
+    nav a:hover {
+      color: #000;
+      background-color: #45a569;
+    }
 
 .wrapper {
   display: flex;
