@@ -122,8 +122,9 @@
     <a href="#horaire">Horaire</a>
     <a href="#promotion">Promotion</a>
   </nav>
-<?php
+  <img src="images/headerBIU.png" alt="">
 
+<?php
     include("admin/connexion.php");
     $sql = "SELECT * FROM timetable "; 
     $stmtSelect = $connexion->prepare($sql);
@@ -131,7 +132,7 @@
     $timeTables = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
     foreach($timeTables as $timeTable): 
     ?>
-    <img src="images/headerBIU.png" alt="">
+    
     <h3 id="title">Bujumbura International University. Tentative Weekly time table: <?php echo $timeTable['weekTime'] ?></h3>
     <Table border="1">
         <tr>
@@ -216,12 +217,12 @@
 
         <tr class = "rooms">
             <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
-            <td id="horairesalleyellow"></td>
+            <td id="horairesalleyellow"><h3><?php echo $timeTable['monRoom'] ?></h3></td>
+            <td id="horairesalleyellow"><h3><?php echo $timeTable['tueRoom'] ?></h3></td>
+            <td id="horairesalleyellow"><h3><?php echo $timeTable['wedRoom'] ?></h3></td>
+            <td id="horairesalleyellow"><h3><?php echo $timeTable['thuRoom'] ?></h3></td>
+            <td id="horairesalleyellow"><h3><?php echo $timeTable['friRoom'] ?></h3></td>
+            <td id="horairesalleyellow"><h3><?php echo $timeTable['satRoom'] ?></h3></td>
         </tr>
 
         <!--end of table-->

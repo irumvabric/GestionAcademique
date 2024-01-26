@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 25 jan. 2024 à 12:11
+-- Généré le : ven. 26 jan. 2024 à 11:33
 -- Version du serveur : 10.4.25-MariaDB
 -- Version de PHP : 8.0.23
 
@@ -53,6 +53,7 @@ INSERT INTO `classe` (`id`, `Nom`, `Departement`, `Faculte`, `Promotion`, `class
 CREATE TABLE `cour` (
   `id` varchar(10) NOT NULL,
   `intitule` text NOT NULL,
+  `classe` varchar(10) DEFAULT NULL,
   `NbrCredit` int(5) NOT NULL,
   `Description` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -61,11 +62,11 @@ CREATE TABLE `cour` (
 -- Déchargement des données de la table `cour`
 --
 
-INSERT INTO `cour` (`id`, `intitule`, `NbrCredit`, `Description`) VALUES
-('BST-2150', 'PHP', 4, 'flex-direction: row-reverse;'),
-('BST-2154', 'UML', 4, 'This code is using a prepared statement with placeholders, and then it binds the actual values using the execute method.'),
-('BST-2157', 'Java', 4, 'font-family: \'Arial\', sans-serif;\r\n      margin: 0;\r\n      padding: 0;\r\n      background-color: #f5f5f5'),
-('BST-2158', 'UML', 4, 'This code is using a prepared statement with placeholders, and then it binds the actual values using the execute method.');
+INSERT INTO `cour` (`id`, `intitule`, `classe`, `NbrCredit`, `Description`) VALUES
+('BST-2150', 'PHP', NULL, 4, 'flex-direction: row-reverse;'),
+('BST-2154', 'UML', NULL, 4, 'This code is using a prepared statement with placeholders, and then it binds the actual values using the execute method.'),
+('BST-2157', 'Java', NULL, 4, 'font-family: \'Arial\', sans-serif;\r\n      margin: 0;\r\n      padding: 0;\r\n      background-color: #f5f5f5'),
+('BST-2158', 'UML', NULL, 4, 'This code is using a prepared statement with placeholders, and then it binds the actual values using the execute method.');
 
 -- --------------------------------------------------------
 
@@ -84,10 +85,10 @@ CREATE TABLE `departement` (
 --
 
 INSERT INTO `departement` (`idDepartement`, `nom`, `Faculte`) VALUES
-('BST-21', 'nbnbJ7', 'BST-2157'),
-('BST-2154', 'nbnb', ''),
-('BST-21577', 'nbnb', 'BST-2157'),
-('BST-21588', 'nbnbJJ', 'BST-2157');
+('1', 'Genie Logiciel', '1'),
+('2', 'Resaux telecomme', '1'),
+('3', 'Logistic', '2'),
+('4', 'Marketing', '2');
 
 -- --------------------------------------------------------
 
@@ -105,8 +106,8 @@ CREATE TABLE `faculte` (
 --
 
 INSERT INTO `faculte` (`id`, `nom`) VALUES
-('BST-2', 'nbnbJJ'),
-('BST-2157', 'nbnb');
+('1', 'Science et technologie'),
+('2', 'Baccalaureat en Business et administration');
 
 -- --------------------------------------------------------
 
@@ -149,11 +150,10 @@ CREATE TABLE `promotion` (
 --
 
 INSERT INTO `promotion` (`Nom`, `NombreEtudiants`) VALUES
-('nbnb', 3),
-('nbnbe', 5),
-('nbnbJJ', 1235),
-('nbnbJJe', 2),
-('nbnbw', 23);
+('P10', 140),
+('P7', 125),
+('P8', 120),
+('P9', 150);
 
 -- --------------------------------------------------------
 
@@ -173,7 +173,12 @@ CREATE TABLE `salle` (
 --
 
 INSERT INTO `salle` (`idSalle`, `Nom`, `NbrPlaces`, `EtatSalleOccup`) VALUES
-('BIU-Salle', 'ntira', 256, 0);
+('', 'Classroom 1', 3, 0),
+('1', 'Main Hall', 45, 0),
+('10', 'Lab 1', 50, 0),
+('12', 'Lab 2', 50, 0),
+('4', 'Classroom 2', 60, 0),
+('6', 'Classroom 3', 90, 0);
 
 -- --------------------------------------------------------
 
@@ -219,16 +224,17 @@ CREATE TABLE `timetable` (
   `satRoom` varchar(10) DEFAULT NULL,
   `CodeCourse` varchar(10) DEFAULT NULL,
   `course` varchar(10) DEFAULT NULL,
-  `Lecturer` varchar(10) DEFAULT NULL
+  `Lecturer` varchar(10) DEFAULT NULL,
+  `classe` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `timetable`
 --
 
-INSERT INTO `timetable` (`idTimetable`, `weekTime`, `idCours`, `idProfesseur`, `idSalle`, `Promotion`, `Departement`, `mon8_10`, `tue8_10`, `mon10_12`, `mon1_3`, `mon3_5`, `tue10_12`, `tue1_3`, `tue3_5`, `wed8_10`, `wed10_12`, `wed1_3`, `wed3_5`, `thu8_10`, `thu10_12`, `thu1_3`, `thu3_5`, `fri8_10`, `fri10_12`, `fri1_3`, `fri3_5`, `sat8_10`, `sat10_12`, `monRoom`, `tueRoom`, `wedRoom`, `thuRoom`, `friRoom`, `satRoom`, `CodeCourse`, `course`, `Lecturer`) VALUES
-(4, '7- 7 DEcember 2024', '', '', '', 'P9', 'Geniie Logiciel', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, '7- 78 December 2021', '', '', '', '', '', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BIU-Salle', 'BIU-Salle', 'BIU-Salle', 'BIU-Salle', 'BIU-Salle', 'BIU-Salle', 'BST-2150', 'BST-2150', 'BIU-Salle');
+INSERT INTO `timetable` (`idTimetable`, `weekTime`, `idCours`, `idProfesseur`, `idSalle`, `Promotion`, `Departement`, `mon8_10`, `tue8_10`, `mon10_12`, `mon1_3`, `mon3_5`, `tue10_12`, `tue1_3`, `tue3_5`, `wed8_10`, `wed10_12`, `wed1_3`, `wed3_5`, `thu8_10`, `thu10_12`, `thu1_3`, `thu3_5`, `fri8_10`, `fri10_12`, `fri1_3`, `fri3_5`, `sat8_10`, `sat10_12`, `monRoom`, `tueRoom`, `wedRoom`, `thuRoom`, `friRoom`, `satRoom`, `CodeCourse`, `course`, `Lecturer`, `classe`) VALUES
+(4, '7- 7 DEcember 2024', '', '', '', 'P9', 'Geniie Logiciel', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', 'BST-2154', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, '7- 4December 2021', '', '', '', '', '', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', 'BST-2150', '10', '10', '10', '12', '10', '10', 'BST-2150', 'BST-2150', 'BIU-5889', NULL);
 
 -- --------------------------------------------------------
 
@@ -243,17 +249,18 @@ CREATE TABLE `utilisateur` (
   `tel` varchar(10) NOT NULL,
   `email` varchar(25) NOT NULL,
   `username` varchar(25) NOT NULL,
-  `password` varchar(25) NOT NULL
+  `password` varchar(25) NOT NULL,
+  `profil` varchar(12) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`ID`, `nom`, `prenom`, `tel`, `email`, `username`, `password`) VALUES
-(1, 'brice berry', 'irumva', '55544', 'irumvabr@gmail.com', 'a455', '4554'),
-(2, 'brice berry', 'irumva', '75896896', 'irumvabr@gmail.com', 'admin', '4587'),
-(5, 'Marie', 'Keza', '75452145', 'uterva@gamil.com', 'kewza', '4785556');
+INSERT INTO `utilisateur` (`ID`, `nom`, `prenom`, `tel`, `email`, `username`, `password`, `profil`) VALUES
+(1, 'brice berry', 'irumva', '55544', 'irumvabr@gmail.com', 'a455', '4554', NULL),
+(2, 'brice berry', 'irumva', '75896896', 'irumvabr@gmail.com', 'admin', '4587', NULL),
+(5, 'Marie', 'Keza', '75452145', 'uterva@gamil.com', 'kewza', '4785556', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -321,7 +328,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `timetable`
 --
 ALTER TABLE `timetable`
-  MODIFY `idTimetable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idTimetable` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`

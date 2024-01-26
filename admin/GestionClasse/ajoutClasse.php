@@ -243,7 +243,7 @@ input[type='reset']:hover {
                 <td> <?php echo $classe['Departement'];?></td> 
                 <td> <?php echo $classe['Promotion'];?></td> 
                 <td> <?php echo $classe['NumberStudents'];?></td> 
-                <td><a href="ModifierClasse.php?modife=<?php echo $classe['id'] ?>"> Edit || <a href="Administrateur.php?supp=<?php echo $classe['id'];?>">Delete</td>
+                <td><a href="ModifierClasse.php?modife=<?php echo $classe['id'] ?>"> Edit || <a href="ajoutClasse.php?supp=<?php echo $classe['id'];?>">Delete</td>
             </tr>
             <?php 
               endforeach;

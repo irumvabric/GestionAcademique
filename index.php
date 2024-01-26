@@ -1,111 +1,101 @@
+<?php
+        include 'admin/connexion.php';
+
+        if (isset($_POST['submit'])) {
+            $nom_utilisateur = $_POST['username'];
+            $mot_de_passe = $_POST['password'];
+
+            // Use a prepared statement to prevent SQL injection
+            $sqlLogin = "SELECT * FROM utilisateur WHERE username = ? AND password = ?" ;
+            $stmtLogin = $connexion->prepare($sqlLogin);
+            $stmtLogin->execute([$nom_utilisateur, $mot_de_passe]);
+            $user = $stmtLogin->fetch(PDO::FETCH_ASSOC);
+
+            if ($user) {
+                // Authentication successful
+                header('location: home.php');
+                exit();
+            } else {
+                $error = 'Nom d\'utilisateur ou mot de passe est incorrect';
+            }
+        }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
-    }
-
-    header {
-      background-color: #45a569;
-      color: #fff;
-      text-align: center;
-      padding: 1em;
-    }
-
-    nav {
-      background-color: #4CAF50;
-      color: #fff;
-      text-align: center;
-      padding: 1em;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      margin: 0 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      color: #000;
-      background-color: #45a569;
-    }
-
-    section {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      justify-content: center;
-    }
-
-    .card {
-      background-color: #fff;
-      color: #333;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-  </style>
-  <title>Gestion Horaire</title>
+    <meta charset="UTF-8">
+    <title>Authentification</title>
+    <style>
+        /* Custom CSS for the form */
+        body {
+            font-family: sans-serif;
+            background-color: #4CAF50;
+        }
+        .auth-form {
+            margin: 0 auto;
+            background-color: #fff;
+            margin-top: 7%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 40px;
+        }
+        label {
+            display: block;
+            color:#ccc;
+            font-family: Arial,sans-serif;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 75%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .error {
+            width: 75%;
+            font-size: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ff0000;
+            background-color:  #ff0000;
+            color: wheat;
+            margin-left:9%;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <h1>Gestion Horaire</h1>
-  </header>
-
-  <nav>
-    <a href="home.php">Accueil</a>
-    <a href="admin/GestionProf/AjoutProf.php">Professeur</a>
-    <a href="admin/GestionCours/ajoutCours.php">Cour</a>
-    <a href="admin/GestionFaculte/Faculte.php">Faculté</a>
-    <a href="admin/GestionDepartement/Departement.php">Departement</a>
-    <a href="admin/GestionSalles/AjoutSalles.php">Salle</a>
-    <a href="">Horaire</a>
-    <a href="admin/GestionClasse/ajoutClasse.php">Classe</a>
-    <a href="admin/GestionPromotion/ajoutPromotion.php">Promotion</a>
-  </nav>
-
-  <section>
-    <div class="card">
-      <a href="admin/GestionCours/ajoutCours.php">Ajout Cours</a>
-    </div>
-
-    <div class="card">
-      <a href="admin/GestionProf/AjoutProf.php">Ajout Professeur</a>
-    </div>
-
-    <div class="card">
-      <a href="admin/GestionFaculte/Faculte.php">Ajout Faculté</a>
-    </div>
-
-    <div class="card">
-      <a href="admin/GestionDepartement/Departement.php">Ajout Departement</a>
-    </div>
-
-    <div class="card">
-      <a href="admin/GestionPromotion/ajoutPromotion.php">Ajout Promotion</a>
-    </div>
-
-    <div class="card">
-      <a href="admin/GestionSalles/AjoutSalles.php">Ajout Salles</a>
-    </div>
-  </section>
-
+    <div class="auth-form">
+        <h2>Authentification</h2>
+        
+        <form method="post">
+        <?php if (isset($error)) { ?>
+            <div class="error"><?= $error ?></div>
+        <?php } ?>
+            <label for="username">Nom d'utilisateur</label>
+            <input type="text" id="username" placeholder="Entrez votre Nom d'utilisateur" name="username">
+            <label for="password">Mot de passe</label>
+            <input type="password" id="password" placeholder="Entrez votre mot de passe" name="password">
+            <button type="submit" name="submit">Connexion</button>
+        </form>
+    </div>
 </body>
 </html>
+

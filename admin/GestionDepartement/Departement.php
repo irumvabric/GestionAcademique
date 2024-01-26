@@ -141,7 +141,7 @@ input[type='reset']:hover {
             <tr>
               <td> Faculté</td>
               <td><select name="faculte"  >
-                    <?php include '../../optionsFaculte.php'; ?>
+                    <?php include '../../option/optionsFaculte.php'; ?>
                 </select></td>
             </tr>
 
@@ -196,7 +196,7 @@ input[type='reset']:hover {
             <?php
 
                 include("../connexion.php");
-                $sql = "SELECT * FROM departement"; 
+                $sql = "SELECT * FROM departement "; 
                 $stmtSelect = $connexion->prepare($sql);
                 $stmtSelect ->execute();
                 $departements = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);

@@ -77,6 +77,7 @@ form table,
 
 input[type='text'],
 input[type='number'],
+select,
 textarea {
   width: 100%;
   padding: 8px;
@@ -138,6 +139,11 @@ input[type='reset']:hover {
             </tr>
 
             <tr>
+              <td> Classe</td>
+              <td><input type="text" name="classe"></td>
+            </tr>
+
+            <tr>
               <td> Nombre de Credit</td>
               <td><input type="number" name="NbrCredit" /></td>
             </tr>
@@ -163,13 +169,14 @@ input[type='reset']:hover {
     if(isset($_POST['submit']))
     {
         $id =$_POST['id'];
-      $intitule = $_POST['intitule'];
+        $intitule = $_POST['intitule'];
+        $classe = $_POST['classe'];
         $NbrCredit =$_POST['NbrCredit'];
-      $Description = $_POST['Desc'];
+        $Description = $_POST['Desc'];
         
-        $insertCourse = " insert into cour(id,intitule,NbrCredit,Description) values(?,?,?,?)" ;
+        $insertCourse = " insert into cour(id,intitule,classe,NbrCredit,Description) values(?,?,?,?,?)" ;
         $stmtInsert = $connexion->prepare($insertCourse) ;
-        $result = $stmtInsert->execute([$id,$intitule,$NbrCredit,$Description]) ;
+        $result = $stmtInsert->execute([$id,$intitule,$classe,$NbrCredit,$Description]) ;
 
         if($result){
             echo "Succefully added";
@@ -188,15 +195,23 @@ input[type='reset']:hover {
     // }
     }
 ?>
+
+<?php
+    if(isset($_GET["supp"])){
+        $Recusup=$_GET["supp"];
+        $suputil=$connexion -> query ("delete * from cour where id=$Recusup");
+    }
+    ?>
     <!-- Table section -->
     <div class="table">
     <table>
             <tr>
               <th>id</th>
               <th>intitule</th>
+              <th>Classe</th>
               <th>NbrCredit</th>
               <th>Description</th>
-              <th>Functions</th>
+              <!-- <th>Functions</th> -->
             </tr>
             <?php
 
@@ -210,9 +225,10 @@ input[type='reset']:hover {
             <tr>
                 <td> <?php echo $cour['id'];?></td>
                 <td><?php echo $cour['intitule']; ?></td>
+                <td> <?php echo $cour['classe'];?></td> 
                 <td> <?php echo $cour['NbrCredit'];?></td> 
                 <td> <?php echo $cour['Description'];?></td> 
-                <td>Edit || Delete</td>
+                
             </tr>
             <?php 
               endforeach;

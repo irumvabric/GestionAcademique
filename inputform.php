@@ -75,6 +75,11 @@ include("admin/connexion.php");
             justify-content: center;
         }
 
+        .button button a{
+            text-decoration: none;
+            width: 100px;
+        }
+
         .button button{
            
             padding: 10px 20px;
@@ -280,7 +285,7 @@ include("admin/connexion.php");
     </Table>
     <div class="button">
         <button name="submit"><strong>Save</strong></button>
-        <button name="Modify"><strong>Modify</strong></button>
+        <button name="Modify"><strong><a href="outputform.php">Horaires</a></strong></button>
     </div>
     </form>
     <?php 
