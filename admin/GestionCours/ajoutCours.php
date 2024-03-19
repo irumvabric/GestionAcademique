@@ -114,6 +114,19 @@ input[type='reset']:hover {
   font-size: 36px;
   text-align: center;
 }
+
+     .error {
+            width: 75%;
+            font-size: 12px;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ff0000;
+            background-color:  #ff0000;
+            color: wheat;
+            margin-left:9%;
+            margin-bottom: 10px;
+        }
 </style>
 </head>
 <body>
@@ -127,6 +140,9 @@ input[type='reset']:hover {
     <div class="form">
         <form method="POST">
         <h1>Ajout Cours</h1>
+        <?php if (isset($error)) { ?>
+            <div class="error"><?= $error ?></div>
+        <?php } ?>
           <table>
             <tr>
               <td> ID Cours </td>
@@ -179,9 +195,9 @@ input[type='reset']:hover {
         $result = $stmtInsert->execute([$id,$intitule,$classe,$NbrCredit,$Description]) ;
 
         if($result){
-            echo "Succefully added";
+            $error  =  "Succefully added";
           }else{
-            echo "Data have not been added";
+            // $error = "Data have not been added";
           }
     // $variable_affichage = $connexion ->query("select * from cour");
     // while($bd_util =  $variable_affichage->fetch())
