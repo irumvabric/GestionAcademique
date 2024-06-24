@@ -30,7 +30,8 @@
         /* Custom CSS for the form */
         body {
             font-family: sans-serif;
-            background-color: #4CAF50;
+            /* background-color: #4CAF50; */
+            background-image: url(images/MacBook Air - 5.png) ;
         }
         .auth-form {
             margin: 0 auto;
