@@ -21,6 +21,48 @@
         }
 ?>
 
+<!-- 
+- idTimetable
+- idCours
+- weekTime
+- idProfesseur
+- idSalle
+- Promotion
+- Departement
+- mon8_10
+- tue8_10
+- mon10_12
+- mon1_3
+- mon3_5
+- tue10_12
+- tue1_3
+- tue3_5
+- wed8_10
+- wed10_12
+- wed1_3
+- wed3_5
+- thu8_10
+- thu10_12
+- thu1_3
+- thu3_5
+- fri8_10
+- fri10_12
+- fri1_3
+- fri3_5
+- sat8_10
+- sat10_12
+- monRoom
+- tueRoom
+- wedRoom
+- thuRoom
+- friRoom
+- satRoom
+- CodeCourse
+- course
+- Lecturer
+- classe -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
