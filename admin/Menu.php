@@ -1,3 +1,8 @@
+// <!------------Explication du Code--------------------->
+
+// <!--Le fichier à appeler quand j'ai besoin du menu-->
+
+
 <nav>
     <a href="../../home.php">Accueil</a>
     <a href="../GestionProf/AjoutProf.php">Professeur</a>
