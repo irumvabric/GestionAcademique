@@ -13,14 +13,14 @@
             background-color: #f5f5f5;
         }
     header {
-      background-color: #333;
+      background-color: #4CAF50;
       color: #fff;
       text-align: center;
       padding: 0.01em;
     }
 
     nav {
-      background-color: #444;
+      background-color: #4CAF50;
       color: #fff;
       text-align: center;
       padding: 1em;

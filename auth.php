@@ -5,14 +5,12 @@
             $nom_utilisateur = $_POST['username'];
             $mot_de_passe = $_POST['password'];
 
-            // Use a prepared statement to prevent SQL injection
             $sqlLogin = "SELECT * FROM utilisateur WHERE username = ? AND password = ?" ;
             $stmtLogin = $connexion->prepare($sqlLogin);
             $stmtLogin->execute([$nom_utilisateur, $mot_de_passe]);
             $user = $stmtLogin->fetch(PDO::FETCH_ASSOC);
 
             if ($user) {
-                // Authentication successful
                 header('location: home.php');
                 exit();
             } else {

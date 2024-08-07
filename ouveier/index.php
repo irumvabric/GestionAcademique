@@ -108,7 +108,7 @@ while($bd_util =  $variable_affichage->fetch())
 {
 	if(($user_name ==$bd_util['username']) && ($psw==$bd_util['password']))
 	{
-		header('location:home_admin.php');
+		header('location:home.php');
 	
 	}
 	else

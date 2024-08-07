@@ -133,42 +133,33 @@ input[type='reset']:hover {
     <!-- Form section -->
     <div class="form">
         <form method="POST">
-        <h1>Ajout Professeur</h1>
+        <h1>Ajout Animal</h1>
           <table>
           <tr>
-        <td> Id Enseignant  </td>
+        <td> Id Animal  </td>
         <td><input type="text" name="idEnseignant" /></td>
       </tr>
       <tr>
-        <td> Nom </td>
-        <td><input type="text" name="nom" /></td>
+        <td> prod_litre </td>
+        <td><input type="number" name="prod_litre" /></td>
       </tr>
 
       <tr>
-        <td> Prenom</td>
-        <td><input type="text" name="prenom" /></td>
+        <td> EtatDesante</td>
+        <td><select name="EtatDesante"  >
+                    <option value="BienPortant">BienPortant</option>
+                    <option value="Malade">Malade</option>
+                    <option value="Mort">Mort</option>            
+                  </select></td>
       </tr>
 
       <tr>
-        <td> Diplome</td>
-        <td><input type="text" name="diplome" /></td>
-      </tr>
-
-      <tr>
-        <td> Cours</td>
-        <td><select name="CoursId"  >
-                    <?php include '../../optionsCours.php'; ?>
+        <td> Type</td>
+        <td><select name="Type"  >
+                    <option value="Vache">Vache</option>
+                    <option value="Chevre">Chevre</option>
+                    <option value="Mouton">Mouton</option>
             </select></td>
-      </tr>
-
-      <tr>
-        <td> Tel</td>
-        <td><input type="number" name="tel" /></td>
-      </tr>
-
-      <tr>
-        <td> Email</td>
-        <td><input type="email" name="email" /></td>
       </tr>
 
             <tr>
@@ -184,18 +175,31 @@ input[type='reset']:hover {
     <?php 
 if(isset($_POST['submit']))
 {
-    $idEnseignant = $_POST['idEnseignant'];
-    $nom =$_POST['nom'];
-	$prenom = $_POST['prenom'];
-    $Diplome = $_POST['diplome'];
-    $CoursId = $_POST['CoursId'];
-    $tel =$_POST['tel'];
-	$email = $_POST['email'];
 
+
+  $prod = $_POST['prod_litre'];
+  $etat = $_POST['EtatDesante'];
+  $type = $_POST['Type'];
+
+    //generate id
+
+    $sql = "SELECT count(*) FROM animaux WHERE Type = ?"; 
+    $stmtSelect = $connexion->prepare($sql);
+    $stmtSelect->execute([$type]); 
+
+    $count = $stmtSelect->fetchColumn() + 1;
+
+  
+    echo $count;
+
+    $id = substr($type,0,1)."-".$count."-".date("Y");
+
+  
+  
     
-    $insertProf = " insert into professeur(id_enseignant,nom,prenom,Diplome,idCourstelephone,email) values(?,?,?,?,?,?,?)" ;
-    $stmtInsert = $connexion->prepare($insertProf) ;
-    $result = $stmtInsert->execute([$idEnseignant,$nom,$prenom,$Diplome,$CoursId,$tel,$email]) ;
+    $insertAnimal = "insert into animaux(id_animal,prod_litre,EtatDesante,Type) values(?,?,?,?)" ;
+    $stmtInsert = $connexion->prepare($insertAnimal) ;
+    $result = $stmtInsert->execute([$id,$prod,$etat,$type]) ;
 
     if($result){
         echo "Succefully added";
@@ -232,30 +236,28 @@ if(isset($_POST['submit']))
     <div class="table">
     <table>
             <tr>
-              <th>Matricule</th>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Diplôme</th>
-              <th>Télephone</th>
-              <th>Email</th>
-              <th>Functions</th>
+              <th>ID Animal</th>
+              <th>Production en litre</th>
+              <th>Etat de santé</th>
+              <th>Type</th>
+              <th>Action</th>
             </tr>
             <?php
 
+				
+
                 include("../connexion.php");
-                $sql = "SELECT * FROM professeur"; 
+                $sql = "SELECT * FROM animaux"; 
                 $stmtSelect = $connexion->prepare($sql);
                 $stmtSelect ->execute();
-                $professeurs = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
-                foreach($professeurs as $professeur): 
+                $animaux = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+                foreach($animaux as $animal): 
                 ?>
             <tr>
-                <td> <?php echo $professeur['id_enseignant'];?></td>
-                <td><?php echo $professeur['nom']; ?></td>
-                <td> <?php echo $professeur['prenom'];?></td> 
-                <td> <?php echo $professeur['Diplome'];?></td> 
-                <td> <?php echo $professeur['telephone'];?></td> 
-                <td> <?php echo $professeur['email'];?></td> 
+                <td> <?php echo $animal['id_animal'];?></td>
+                <td><?php echo $animal['prod_litre']; ?></td>
+                <td> <?php echo $animal['EtatDesante'];?></td> 
+                <td> <?php echo $animal['Type'];?></td> 
                 <td>Edit || Delete</td>
             </tr>
             <?php 

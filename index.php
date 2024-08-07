@@ -13,7 +13,7 @@
 
             if ($user) {
                 // Authentication successful
-                header('location: home.php');
+                header('location: admin/home_admin.php');
                 exit();
             } else {
                 $error = 'Nom d\'utilisateur ou mot de passe est incorrect';
@@ -72,7 +72,7 @@
         /* Custom CSS for the form */
         body {
             font-family: sans-serif;
-            /* background-color: #4CAF50; */
+            background-color: #4CAF50;
             background-image: url(images/MacBook Air - 5.png) ;
         }
         .auth-form {

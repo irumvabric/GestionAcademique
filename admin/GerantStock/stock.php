@@ -114,60 +114,35 @@ input[type='reset']:hover {
   font-size: 36px;
   text-align: center;
 }
-
-     .error {
-            width: 75%;
-            font-size: 12px;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            border: 2px solid #ff0000;
-            background-color:  #ff0000;
-            color: wheat;
-            margin-left:9%;
-            margin-bottom: 10px;
-        }
 </style>
 </head>
 <body>
   
 <?php
-    include("../Menu.php");
+    include("../subMenu.php");
   ?>
-	
+  
   <div class="wrapper">
     <!-- Form section -->
     <div class="form">
         <form method="POST">
-        <h1>Ajout Cours</h1>
-        <?php if (isset($error)) { ?>
-            <div class="error"><?= $error ?></div>
-        <?php } ?>
+        <h1>Ajout Departement</h1>
           <table>
             <tr>
-              <td> ID Cours </td>
+              <td> ID Departement </td>
               <td><input type="text" name="id" /></td>
             </tr>
 
             <tr>
-              <td> Intitulé</td>
-              <td><input type="text" name="intitule" /></td>
+              <td> Nom</td>
+              <td><input type="text" name="Nom" /></td>
             </tr>
 
             <tr>
-              <td> Classe</td>
-              <td><input type="text" name="classe"></td>
-            </tr>
-
-            <tr>
-              <td> Nombre de Credit</td>
-              <td><input type="number" name="NbrCredit" /></td>
-            </tr>
-
-            <tr>
-              <td> Description</td>
-              <td>  <textarea name="Desc" rows="4" cols="50"></textarea>
-      </td>
+              <td> Faculté</td>
+              <td><select name="faculte"  >
+                    <?php include '../../option/optionsFaculte.php'; ?>
+                </select></td>
             </tr>
 
             <tr>
@@ -180,29 +155,27 @@ input[type='reset']:hover {
         </form>
     </div>
 
-
     <?php 
     if(isset($_POST['submit']))
     {
         $id =$_POST['id'];
-        $intitule = $_POST['intitule'];
-        $classe = $_POST['classe'];
-        $NbrCredit =$_POST['NbrCredit'];
-        $Description = $_POST['Desc'];
+        $Nom = $_POST['Nom'];
+        $faculte = $_POST['faculte'];
         
-        $insertCourse = " insert into cour(id,intitule,classe,NbrCredit,Description) values(?,?,?,?,?)" ;
-        $stmtInsert = $connexion->prepare($insertCourse) ;
-        $result = $stmtInsert->execute([$id,$intitule,$classe,$NbrCredit,$Description]) ;
+        
+        $insertDep = " insert into departement(idDepartement,nom,faculte) values(?,?,?)" ;
+        $stmtInsert = $connexion->prepare($insertDep) ;
+        $result = $stmtInsert->execute([$id,$Nom,$faculte]) ;
 
         if($result){
-            $error  =  "Succefully added";
+            echo "Succefully added";
           }else{
-            // $error = "Data have not been added";
+            echo "Data have not been added";
           }
-    // $variable_affichage = $connexion ->query("select * from cour");
+    // $variable_affichage = $connexion ->query("select * from departement");
     // while($bd_util =  $variable_affichage->fetch())
     // {
-    //   if(($id ==$bd_util['id']))
+    //   if(($id ==$bd_util['idDepartement']))
     //   {
     //         echo('The course already exit in Database');
     //     // header('location:home.php');
@@ -211,40 +184,29 @@ input[type='reset']:hover {
     // }
     }
 ?>
-
-<?php
-    if(isset($_GET["supp"])){
-        $Recusup=$_GET["supp"];
-        $suputil=$connexion -> query ("delete * from cour where id=$Recusup");
-    }
-    ?>
     <!-- Table section -->
     <div class="table">
     <table>
             <tr>
-              <th>id</th>
-              <th>intitule</th>
-              <th>Classe</th>
-              <th>NbrCredit</th>
-              <th>Description</th>
-              <!-- <th>Functions</th> -->
+              <th>id Departement</th>
+              <th>Nom Departement</th>
+              <th>Nom Faculté</th>
+              <th>Functions</th>
             </tr>
             <?php
 
                 include("../connexion.php");
-                $sql = "SELECT * FROM cour"; 
+                $sql = "SELECT * FROM departement "; 
                 $stmtSelect = $connexion->prepare($sql);
                 $stmtSelect ->execute();
-                $cours = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
-                foreach($cours as $cour): 
+                $departements = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+                foreach($departements as $departement): 
                 ?>
             <tr>
-                <td> <?php echo $cour['idCour'];?></td>
-                <td><?php echo $cour['intitule']; ?></td>
-                <td> <?php echo $cour['classe'];?></td> 
-                <td> <?php echo $cour['NbrCredit'];?></td> 
-                <td> <?php echo $cour['Description'];?></td> 
-                
+                <td> <?php echo $departement['idDepartement'];?></td>
+                <td><?php echo $departement['nom']; ?></td>
+                <td><?php echo $departement['Faculte']; ?></td>
+                <td>Edit || Delete</td>
             </tr>
             <?php 
               endforeach;

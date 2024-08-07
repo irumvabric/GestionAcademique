@@ -1,16 +1,9 @@
-// <!------------Explication du Code--------------------->
-
-// <!--Le fichier à appeler quand j'ai besoin du menu-->
-
-
 <nav>
-    <a href="../../home.php">Accueil</a>
-    <a href="../GestionProf/AjoutProf.php">Professeur</a>
-    <a href="../GestionCours/ajoutCours.php">Cour</a>
-    <a href="../GestionFaculte/Faculte.php">Faculté</a>
-    <a href="../GestionDepartement/Departement.php">Departement</a>
-    <a href="../GestionSalles/AjoutSalles.php">Salle</a>
-    <a href="../accueilHoraire.php">Horaire</a>
-    <a href="../GestionClasse/ajoutClasse.php">Classe</a>
-    <a href="../GestionPromotion/ajoutPromotion.php">Promotion</a>
+    <a href="home_admin.php">Accueil</a>
+    <a href="GestionAnimaux/CRUDAnimaux.php">Animaux</a>
+    <a href="GestionPersonnel/Personnel.php">Personnel</a>
+    <a href="GestionProduits/Produits.php">Produits</a>
+    <a href="GestionAliments/Aliments.php">Aliments</a>
+    <a href="GestionFinances/Finances.php">Finances</a>
+    <a href="GestionLocaux/CRUDLocaux.php">Locaux</a>
   </nav>

@@ -1,10 +1,5 @@
 <?php
-$server_address="Localhost";
-$user_name="root";
-$bd_name="horaire";
-$pwd= "";
-$con = new PDO("mysql:host=$server_address;dbname=$bd_name",$user_name,$pwd);
-
+include("connexion.php");
 ?>
 
 
@@ -49,6 +44,8 @@ $con = new PDO("mysql:host=$server_address;dbname=$bd_name",$user_name,$pwd);
   }
   
   input[type='text'],
+  input[type='tel'],
+  input[type='email'],
   input[type='password'] {
     width: 100%;
     padding: 8px;
@@ -78,12 +75,33 @@ $con = new PDO("mysql:host=$server_address;dbname=$bd_name",$user_name,$pwd);
 <body>
 	<div class="wrapper">
   <form method="POST">
-	<h1>Login</h1>
+	<h1>Create Account</h1>
     <table>
       <tr>
-        <td> Username :</td>
+        <td> Nom </td>
+        <td><input type="text" name="nom" /></td>
+      </tr>
+
+      <tr>
+        <td> Prenom</td>
+        <td><input type="text" name="prenom" /></td>
+      </tr>
+
+      <tr>
+        <td> Tel</td>
+        <td><input type="tel" name="tel" /></td>
+      </tr>
+
+      <tr>
+        <td> Email</td>
+        <td><input type="email" name="email" /></td>
+      </tr>
+
+      <tr>
+        <td> username</td>
         <td><input type="text" name="user" /></td>
       </tr>
+
       <tr>
         <td> Password :</td>
 
@@ -91,7 +109,7 @@ $con = new PDO("mysql:host=$server_address;dbname=$bd_name",$user_name,$pwd);
       </tr>
       <tr>
         <td colspan="2">
-          <input type="submit" name="submit" value="Connect" />
+          <input type="submit" name="submit" value="Save" />
           <input type="reset" value="Cancel" />
         </td>
       </tr>
@@ -100,20 +118,45 @@ $con = new PDO("mysql:host=$server_address;dbname=$bd_name",$user_name,$pwd);
 <?php 
 if(isset($_POST['submit']))
 {
+    $nom =$_POST['nom'];
+	$prenom = $_POST['prenom'];
+    $tel =$_POST['tel'];
+	$email = $_POST['email'];
 	$user_name =$_POST['user'];
-	$psw= $_POST['psw'];
+	$psw = $_POST['psw'];
 
-$variable_affichage = $con ->query("select * from utilisateur");
+    
+		
+    $insertUser = " insert into utilisateur(nom,prenom,tel,email,username,password) values(?,?,?,?,?,?)" ;
+    $stmtInsert = $connexion->prepare($insertUser) ;
+    $result = $stmtInsert->execute([$nom,$prenom,$tel,$email,$user_name,$psw]) ;
+
+    if($result){
+        echo "Succefully added";
+      }else{
+        echo "Data have not been added";
+      }
+$variable_affichage = $connexion ->query("select * from utilisateur");
 while($bd_util =  $variable_affichage->fetch())
 {
 	if(($user_name ==$bd_util['username']) && ($psw==$bd_util['password']))
 	{
-		header('location:home_admin.php');
+        echo('Paramètres de connexion sonts deja dans la base de données');
+		// header('location:home.php');
 	
 	}
 	else
 	{
-		echo('Paramètres de connexion incorects');
+		
+        $insertUser = " insert into utilisateur(nom,prenom,tel,email,username,password) values(?,?,?,?,?,?)" ;
+        $stmtInsert = $connexion->prepare($insertUser) ;
+        $result = $stmtInsert->execute([$nom,$prenom,$tel,$email,$user_name,$psw]) ;
+    
+        if($result){
+            echo "Succefully added";
+          }else{
+            echo "Data have not been added";
+          }
 	}
 
 }

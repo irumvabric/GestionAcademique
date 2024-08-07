@@ -132,14 +132,14 @@ input[type='reset']:hover {
 <body>
   
 <?php
-    include("../Menu.php");
+    include("../subMenu.php");
   ?>
 	
   <div class="wrapper">
     <!-- Form section -->
     <div class="form">
         <form method="POST">
-        <h1>Ajout Cours</h1>
+        <h1>Ajout Operation</h1>
         <?php if (isset($error)) { ?>
             <div class="error"><?= $error ?></div>
         <?php } ?>
@@ -189,6 +189,11 @@ input[type='reset']:hover {
         $classe = $_POST['classe'];
         $NbrCredit =$_POST['NbrCredit'];
         $Description = $_POST['Desc'];
+
+          // generated id for operation
+
+          $id_operation = $_POST['idSalle'];
+        
         
         $insertCourse = " insert into cour(id,intitule,classe,NbrCredit,Description) values(?,?,?,?,?)" ;
         $stmtInsert = $connexion->prepare($insertCourse) ;
